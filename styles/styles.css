@@ -227,3 +227,115 @@ html {
 }
 
 /* end snippet */
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1, h2, h3, ul, p {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  padding: 10px;
+  display: inline-block;
+}
+
+html {
+  font-size: 62.5%;
+  /* 10px */
+  color: #392F5A;
+}
+
+h1 {
+  font-family: ccmonstermash, sans-serif;
+  font-size: 3.5rem;
+}
+h1 span {
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: ccmonstermash, sans-serif;
+  font-size: 2.4rem;
+}
+h2 span {
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: halogen, sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: black;
+}
+
+nav ul {
+  list-style: none;
+}
+nav a {
+  font-family: ccmonstermash, sans-serif;
+  text-decoration: none;
+  color: #392F5A;
+}
+nav a:hover, nav a:focus {
+  color: #0F22B4;
+}
+nav .mobileNav a {
+  font-size: 2rem;
+}
+nav .desktopNav a {
+  font-size: 3rem;
+}
+nav .mobileMenuIcon {
+  font-size: 3rem;
+}
+
+p {
+  font-family: halogen, sans-serif;
+  font-size: 1.6rem;
+}
+p.gameTagline {
+  font-weight: 700;
+  font-style: oblique;
+}
+
+.buttons {
+  text-align: center;
+}
+.buttons a {
+  font-family: ccmonstermash, sans-serif;
+  font-size: 3.5rem;
+  color: #FF8811;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 5px solid #392F5A;
+}
+.buttons a:hover, .buttons a:focus {
+  color: #0F22B4;
+}
+
+.score {
+  font-family: halogen, sans-serif;
+  font-size: 2rem;
+}
+
+footer p {
+  font-size: 1.6rem;
+}
+footer p a {
+  text-decoration: none;
+  color: #392F5A;
+}
+footer p a:hover, footer p a:focus {
+  color: #0F22B4;
+  text-decoration: underline;
+}

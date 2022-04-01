@@ -14,41 +14,43 @@
 </head>
 <body>
   <header>
-    <div class="titleContainer">
-      <h1>Taglines...with a <span>vengeance</span></h1>
-      <p>Test your knowledge of movie taglines with this fun quiz!</p>
-    </div>
+    <div class="wrapper">
+      <div class="titleContainer">
+        <h1>Taglines...with a <span>vengeance!</span></h1>
+        <h3>Test your knowledge of movie taglines with this fun quiz!</h3>
+      </div><!-- .titleContainer END -->
 
-    <nav>
-      <div class="mobileContainer">
-        <div class="mobileMenuIcon">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-        <ul class="mobileNav">
+      <nav>
+        <div class="mobileContainer">
+          <div class="mobileMenuIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <ul class="mobileNav">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./gameplay.html">Start!</a></li>
+          </ul>
+        </div><!-- .mobileContainer END -->
+        <ul class="desktopNav hidden">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./gameplay.html">Start!</a></li>
         </ul>
-      </div>
-      <ul class="desktopNav hidden">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./gameplay.html">Start!</a></li>
-      </ul>
-    </nav>
+      </nav>
+    </div><!-- .wrapper END -->
   </header>
 
   <main>
-    <section class="introduction">
+    <section class="introduction wrapper">
       <div class="posterDisplay">
         <div class="imgContainer">
           <img src="" alt="A question mark">
-        </div>
+        </div><!-- .imgContainer END -->
         <div class="iconContainer">
           <i class="fa-regular fa-circle-x"></i>
           <i class="fa-regular fa-circle-check"></i>
-        </div>
-      </div>
+        </div><!-- .iconContainer END --> 
+      </div><!-- .posterDisplay END -->
 
       <div class="textContainer">
         <h2>Question <span class="questionCount">1</span>:</h2>
@@ -69,18 +71,18 @@
       
           <button class="buttons" type="submit">Submit</button>
         </form>
-      </div>
+      </div><!-- .textContainer END -->
 
       <div class="scoreContainer">
         <p class="score">Score: <span>0/5</span></p>
-        <!-- is Next> a button because it changes the page, not a link that takes us to a new page?? -->
+        <!-- I have Next> as a button to change the page, rather than a link taking us to a new page. I believe this is how the gameplay will work, but can change later -->
         <button class="buttons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button>
-      </div>
+      </div><!-- .scoreContainer END -->
     </section>
   </main>
 
   <footer>
-    <p>Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB Api</a></p>
+    <p class="wrapper">Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB API</a></p>
   </footer>
   <!-- <script src="./script.js"></script> -->
 </body>
