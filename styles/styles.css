@@ -257,7 +257,12 @@ html {
 
 h1 {
   font-family: ccmonstermash, sans-serif;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+}
+h1 p {
+  font-family: ccmonstermash, sans-serif;
+  font-size: 2.5rem;
+  display: block;
 }
 h1 span {
   text-transform: uppercase;
@@ -329,13 +334,44 @@ p.gameTagline {
 }
 
 footer p {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
+  text-align: center;
 }
 footer p a {
   text-decoration: none;
   color: #392F5A;
+  padding: 10px 0;
 }
 footer p a:hover, footer p a:focus {
   color: #0F22B4;
   text-decoration: underline;
+}
+
+header {
+  background-color: #9DD9D2;
+  padding: 20px 0;
+}
+header .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.desktopNav {
+  display: none;
+}
+
+.mobileContainer .mobileMenuIcon {
+  padding-top: 10px;
+}
+.mobileContainer .mobileNav {
+  border: 3px solid #392F5A;
+  background-color: #FF8811;
+  position: fixed;
+  right: -200px;
+  top: 50px;
+}
+
+footer {
+  background-color: #9DD9D2;
 }

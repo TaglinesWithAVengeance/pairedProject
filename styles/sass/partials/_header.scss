@@ -1,0 +1,24 @@
+header {
+  background-color: $seafoam;
+  padding: 20px 0;
+  .wrapper {
+    display: flex;
+  }
+}
+
+.desktopNav {
+  display: none;
+}
+
+.mobileContainer {
+  .mobileMenuIcon {
+    padding-top: 10px;
+  }
+  .mobileNav {
+    border: 3px solid $purple;
+    background-color: $orange;
+    position: fixed;
+    right: -200px;
+    top: 50px;
+  }
+}
