@@ -1,6 +1,6 @@
 header {
   background-color: $seafoam;
-  padding: 20px 0;
+  padding-top: 20px;
   .wrapper {
     display: flex;
   }
@@ -13,6 +13,11 @@ header {
 .mobileContainer {
   .mobileMenuIcon {
     padding-top: 10px;
+    &:hover,
+    &:focus {
+      color: $orange;
+      transform: scale(1.1);
+    }
   }
   .mobileNav {
     border: 3px solid $purple;

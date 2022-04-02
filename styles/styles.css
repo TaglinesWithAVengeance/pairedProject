@@ -281,6 +281,7 @@ h3 {
   font-weight: 500;
   font-size: 1.2rem;
   color: black;
+  padding-top: 10px;
 }
 
 nav ul {
@@ -313,10 +314,9 @@ p.gameTagline {
   font-style: oblique;
 }
 
-.buttons {
+.buttons a,
+.submitButtons {
   text-align: center;
-}
-.buttons a {
   font-family: ccmonstermash, sans-serif;
   font-size: 3.5rem;
   color: #FF8811;
@@ -324,12 +324,21 @@ p.gameTagline {
   text-transform: uppercase;
   border: 5px solid #392F5A;
 }
-.buttons a:hover, .buttons a:focus {
+.buttons a:hover, .buttons a:focus,
+.submitButtons:hover,
+.submitButtons:focus {
   color: #0F22B4;
 }
 
 .score {
   font-family: halogen, sans-serif;
+  font-size: 2rem;
+}
+
+form {
+  font-family: halogen, sans-serif;
+}
+form li {
   font-size: 2rem;
 }
 
@@ -349,7 +358,7 @@ footer p a:hover, footer p a:focus {
 
 header {
   background-color: #9DD9D2;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 header .wrapper {
   display: -webkit-box;
@@ -364,6 +373,11 @@ header .wrapper {
 .mobileContainer .mobileMenuIcon {
   padding-top: 10px;
 }
+.mobileContainer .mobileMenuIcon:hover, .mobileContainer .mobileMenuIcon:focus {
+  color: #FF8811;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
 .mobileContainer .mobileNav {
   border: 3px solid #392F5A;
   background-color: #FF8811;
@@ -374,4 +388,158 @@ header .wrapper {
 
 footer {
   background-color: #9DD9D2;
+}
+
+.introduction .imgContainer {
+  margin: 5px 0;
+  overflow: hidden;
+  height: 275px;
+  border-radius: 25px;
+}
+.introduction .textContainer {
+  padding: 20px 0;
+}
+.introduction .textContainer h2 {
+  text-align: center;
+}
+.introduction .textContainer .instructions {
+  padding: 20px 0;
+}
+.introduction .textContainer .buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.about .imgContainer {
+  margin: 5px 0;
+  height: 275px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.about .imgContainer img {
+  max-height: 100%;
+  max-width: 150%;
+}
+.about .textContainer h2 {
+  text-transform: uppercase;
+  text-align: left;
+  padding: 10px 0;
+  font-weight: 300;
+}
+.about .textContainer p {
+  padding: 10px 0;
+}
+.about .textContainer p span {
+  text-transform: uppercase;
+}
+.about .textContainer p a {
+  color: #392F5A;
+  display: inline;
+}
+.about .textContainer p a:hover, .about .textContainer p a:focus {
+  color: #0F22B4;
+}
+.about .textContainer .logoContainer {
+  padding-bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.about .textContainer .logoContainer img {
+  width: 30%;
+}
+
+.posterDisplay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+}
+.posterDisplay .posterReveal {
+  width: 50%;
+  max-width: 170px;
+  background: #392F5A;
+  border: 10px solid #9DD9D2;
+}
+.posterDisplay .posterReveal p {
+  color: #FF8811;
+  font-family: ccmonstermash, sans-serif;
+  text-align: center;
+  font-size: 10rem;
+  padding: 35px 0;
+}
+.posterDisplay .iconContainer {
+  padding: 0 15px;
+}
+.posterDisplay .iconContainer i {
+  font-size: 3rem;
+}
+
+.gamePlay .textContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+}
+.gamePlay form {
+  padding: 10px 0;
+}
+.gamePlay form legend {
+  font-size: 1.7rem;
+}
+.gamePlay form .buttonsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.gamePlay form .buttonsContainer .submitButtons {
+  background: transparent;
+}
+
+.gamePlay ul {
+  list-style: none;
+  margin: 15px 0;
+}
+.gamePlay ul li {
+  padding: 5px 0;
+}
+.gamePlay ul li input[type=radio] {
+  display: none;
+}
+.gamePlay ul li input[type=radio]:checked + * {
+  color: #FF8811;
+}
+.gamePlay ul li input[type=radio] + *::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: #392F5A;
+}
+.gamePlay ul li input[type=radio]:checked + *::before {
+  background: radial-gradient(#FF8811 0%, #FF8811 40%, transparent 50%, transparent);
+  border-color: #FF8811;
 }

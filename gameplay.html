@@ -41,43 +41,57 @@
   </header>
 
   <main>
-    <section class="introduction wrapper">
+    <section class="gamePlay wrapper">
       <div class="posterDisplay">
-        <div class="imgContainer">
-          <img src="" alt="A question mark"> <!-- Can we get this as an image to start? -->
-        </div><!-- .imgContainer END -->
         <div class="iconContainer">
-          <i class="fa-regular fa-circle-x"></i>
+          <i class="fa-regular fa-circle-xmark"></i>
+        </div><!-- .iconContainer END --> 
+        <div class="posterReveal">
+          <p>?</p> <!-- Will change innerHTML of posterReveal to an img with src/alt -->
+        </div><!-- .posterReveal END -->
+        <div class="iconContainer">
           <i class="fa-regular fa-circle-check"></i>
         </div><!-- .iconContainer END --> 
       </div><!-- .posterDisplay END -->
 
       <div class="textContainer">
-        <h2>Question <span class="questionCount">1</span>:</h2>
-        <h2>What movie has the tagline...?</h2>
-        <p class="taglineQuestion">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</p>
-        <form action="">
-          <label for="aOption">A movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="aOption" checked="true">
-
-          <label for="bOption">B movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="bOption">
-
-          <label for="cOption">C movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="cOption">
-
-          <label for="dOption">D movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="dOption">
-      
-          <button class="buttons" type="submit">Submit</button>
-        </form>
-      </div><!-- .textContainer END -->
-
-      <div class="scoreContainer">
+        <h2>Question <span id="questionCount">1</span>:</h2>
         <p class="score">Score: <span>0/5</span></p>
         <!-- I have Next> as a button to change the page, rather than a link taking us to a new page. I believe this is how the gameplay will work, but can change later -->
-        <button class="buttons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
-      </div><!-- .scoreContainer END -->
+      </div><!-- .textContainer END -->
+
+      <h2>What movie has the tagline...?</h2>
+      
+      <form action="#">
+        <legend>"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</legend>
+
+        <ul>
+          <li>
+            <input type="radio" name="taglineChoice" value="lorem" id="aOption" checked="true">
+            <label for="aOption">A movie</label>
+          </li>
+
+          <li>
+            <input type="radio" name="taglineChoice" value="lorem" id="bOption">
+            <label for="bOption">B movie</label>
+          </li>
+
+          <li>
+            <input type="radio" name="taglineChoice" value="lorem" id="cOption">
+            <label for="cOption">C movie</label>
+          </li>
+
+          <li>
+            <input type="radio" name="taglineChoice" value="lorem" id="dOption">
+            <label for="dOption">D movie</label>
+          </li>
+        </ul>
+
+        <div class="buttonsContainer">
+          <button class="submitButtons" type="submit">Submit</button>
+          <button class="submitButtons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
+        </div><!-- .buttonsContainer END -->
+      </form>
     </section>
   </main>
 
