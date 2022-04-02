@@ -359,11 +359,15 @@ footer p a:hover, footer p a:focus {
 header {
   background-color: #9DD9D2;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 header .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .desktopNav {
@@ -391,9 +395,10 @@ footer {
 }
 
 .introduction .imgContainer {
-  margin: 5px 0;
+  margin: 5px auto;
   overflow: hidden;
   height: 275px;
+  width: 275px;
   border-radius: 25px;
 }
 .introduction .textContainer {
@@ -411,8 +416,9 @@ footer {
 }
 
 .about .imgContainer {
-  margin: 5px 0;
+  margin: 5px auto;
   height: 275px;
+  width: 275px;
   border-radius: 25px;
   overflow: hidden;
 }
@@ -542,4 +548,52 @@ footer {
 .gamePlay ul li input[type=radio]:checked + *::before {
   background: radial-gradient(#FF8811 0%, #FF8811 40%, transparent 50%, transparent);
   border-color: #FF8811;
+}
+
+@media (min-width: 800px) {
+  .introduction {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .introduction .imgContainer {
+    margin: 40px 0;
+    width: 50%;
+    height: 450px;
+  }
+  .introduction .textContainer {
+    width: 50%;
+    padding-left: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  .about .imgContainer {
+    width: 55%;
+  }
+
+  .gamePlay {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .gamePlay .posterDisplay {
+    position: relative;
+  }
+  .gamePlay .posterDisplay:nth-child(2) {
+    position: absolute;
+    top: 0;
+  }
 }

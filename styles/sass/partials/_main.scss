@@ -1,9 +1,10 @@
 // index main
 .introduction {
   .imgContainer {
-    margin: 5px 0;
+    margin: 5px auto;
     overflow: hidden;
     height: 275px;
+    width: 275px;
     border-radius: 25px;
   }
   .textContainer {
@@ -25,8 +26,9 @@
 // about main specifics
 .about {
   .imgContainer {
-    margin: 5px 0;
+    margin: 5px auto;
     height: 275px;
+    width: 275px;
     border-radius: 25px;
     overflow: hidden;
     img {

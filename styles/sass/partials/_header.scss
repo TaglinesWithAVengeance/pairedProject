@@ -1,8 +1,10 @@
 header {
   background-color: $seafoam;
   padding-top: 20px;
+  padding-bottom: 10px;
   .wrapper {
     display: flex;
+    justify-content: space-between;
   }
 }
 
