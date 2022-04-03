@@ -55,43 +55,45 @@
       </div><!-- .posterDisplay END -->
 
       <div class="textContainer">
-        <h2>Question <span id="questionCount">1</span>:</h2>
-        <p class="score">Score: <span>0/5</span></p>
-        <!-- I have Next> as a button to change the page, rather than a link taking us to a new page. I believe this is how the gameplay will work, but can change later -->
+        <div class="questionScore">
+          <h2>Question <span id="questionCount">1</span>:</h2>
+          <p class="score">Score: <span>0/5</span></p>
+          <!-- I have Next> as a button to change the page, rather than a link taking us to a new page. I believe this is how the gameplay will work, but can change later -->
+        </div><!-- .questionScore END -->
+
+        <h2>What movie has the tagline...?</h2>
+        
+        <form action="#">
+          <legend>"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</legend>
+
+          <ul>
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="aOption" checked="true">
+              <label for="aOption">A movie</label>
+            </li>
+
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="bOption">
+              <label for="bOption">B movie</label>
+            </li>
+
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="cOption">
+              <label for="cOption">C movie</label>
+            </li>
+
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="dOption">
+              <label for="dOption">D movie</label>
+            </li>
+          </ul>
+
+          <div class="buttonsContainer">
+            <button class="submitButtons" type="submit">Submit</button>
+            <button class="submitButtons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
+          </div><!-- .buttonsContainer END -->
+        </form>
       </div><!-- .textContainer END -->
-
-      <h2>What movie has the tagline...?</h2>
-      
-      <form action="#">
-        <legend>"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</legend>
-
-        <ul>
-          <li>
-            <input type="radio" name="taglineChoice" value="lorem" id="aOption" checked="true">
-            <label for="aOption">A movie</label>
-          </li>
-
-          <li>
-            <input type="radio" name="taglineChoice" value="lorem" id="bOption">
-            <label for="bOption">B movie</label>
-          </li>
-
-          <li>
-            <input type="radio" name="taglineChoice" value="lorem" id="cOption">
-            <label for="cOption">C movie</label>
-          </li>
-
-          <li>
-            <input type="radio" name="taglineChoice" value="lorem" id="dOption">
-            <label for="dOption">D movie</label>
-          </li>
-        </ul>
-
-        <div class="buttonsContainer">
-          <button class="submitButtons" type="submit">Submit</button>
-          <button class="submitButtons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
-        </div><!-- .buttonsContainer END -->
-      </form>
     </section>
   </main>
 

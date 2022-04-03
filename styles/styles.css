@@ -245,7 +245,7 @@ img {
 }
 
 a {
-  padding: 10px;
+  padding: 9px;
   display: inline-block;
 }
 
@@ -490,7 +490,7 @@ footer {
   font-size: 3rem;
 }
 
-.gamePlay .textContainer {
+.gamePlay .questionScore {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -584,19 +584,6 @@ footer {
     width: 55%;
   }
 
-  .gamePlay {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .gamePlay .posterDisplay {
-    position: relative;
-  }
-  .gamePlay .posterDisplay:nth-child(2) {
-    position: absolute;
-    top: 0;
-  }
-
   .mobileContainer {
     display: none;
   }
@@ -611,5 +598,39 @@ footer {
 @media (min-width: 1000px) {
   .desktopNav a {
     padding: 10px 20px;
+  }
+
+  .gamePlay {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 80px 0;
+  }
+  .gamePlay .posterDisplay {
+    width: 35%;
+    position: relative;
+  }
+  .gamePlay .posterDisplay .posterReveal {
+    position: absolute;
+    top: 0;
+    max-width: 220px;
+    width: 80%;
+    height: 80%;
+  }
+  .gamePlay .posterDisplay .iconContainer {
+    position: absolute;
+    bottom: 0;
+  }
+  .gamePlay .posterDisplay .iconContainer:first-of-type {
+    left: 100px;
+  }
+  .gamePlay .posterDisplay .iconContainer:last-of-type {
+    right: 100px;
+  }
+  .gamePlay .posterDisplay .iconContainer i {
+    font-size: 4.2rem;
+  }
+  .gamePlay .textContainer {
+    width: 65%;
   }
 }

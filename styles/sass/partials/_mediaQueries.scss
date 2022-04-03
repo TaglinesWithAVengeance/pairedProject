@@ -25,18 +25,6 @@
     }
   }
 
-  //gameplay page
-  .gamePlay {
-    display: flex;
-    .posterDisplay {
-      position: relative;
-    }
-    .posterDisplay:nth-child(2) {
-      position: absolute;
-      top: 0;
-    }
-  }
-
   //desktopNav
   .mobileContainer {
     display: none;
@@ -56,4 +44,37 @@
       padding: 10px 20px;
     }
   }
+
+    //gameplay page
+    .gamePlay {
+      display: flex;
+      padding: 80px 0;
+      .posterDisplay {
+        width: 35%;
+        position: relative;
+        .posterReveal {
+          position: absolute;
+          top: 0;
+          max-width: 220px;
+          width: 80%;
+          height: 80%;
+        }
+        .iconContainer {
+          position: absolute;
+          bottom: 0;
+          &:first-of-type {
+            left: 100px;
+          }
+          &:last-of-type {
+            right: 100px;
+          }
+          i {
+            font-size: 4.2rem;
+          }
+        }
+      }
+      .textContainer {
+        width: 65%;
+      }
+    }
 }
