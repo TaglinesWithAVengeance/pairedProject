@@ -299,7 +299,7 @@ nav .mobileNav a {
   font-size: 2rem;
 }
 nav .desktopNav a {
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 nav .mobileMenuIcon {
   font-size: 3rem;
@@ -595,5 +595,21 @@ footer {
   .gamePlay .posterDisplay:nth-child(2) {
     position: absolute;
     top: 0;
+  }
+
+  .mobileContainer {
+    display: none;
+  }
+
+  .desktopNav {
+    display: block;
+  }
+  .desktopNav li {
+    display: inline-block;
+  }
+}
+@media (min-width: 1000px) {
+  .desktopNav a {
+    padding: 10px 20px;
   }
 }

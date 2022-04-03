@@ -36,4 +36,24 @@
       top: 0;
     }
   }
+
+  //desktopNav
+  .mobileContainer {
+    display: none;
+  }
+
+  .desktopNav {
+    display: block;
+    li {
+      display: inline-block;
+    }
+  }
 } 
+
+@media (min-width: 1000px) {
+  .desktopNav {
+    a {
+      padding: 10px 20px;
+    }
+  }
+}
