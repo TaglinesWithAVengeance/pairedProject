@@ -1,0 +1,109 @@
+html {
+  font-size: 62.5%; /* 10px */
+  color: $purple;
+}
+
+h1 {
+  font-family: $monster;
+  font-size: 2.5rem; //went smaller to fit on 320px screens
+  p {
+    font-family: $monster;
+    font-size: 2.5rem;
+    display: block;
+  }
+  span {
+    text-transform: uppercase;
+  }
+}
+
+h2 {
+  font-family: $monster;
+  font-size: 2.4rem;
+  span {
+    text-transform: uppercase;
+  }
+}
+
+h3 {
+  font-family: $halogen;
+  font-weight: $med;
+  font-size: 1.2rem;
+  color: black;
+  padding-top: 10px;
+}
+
+nav {
+  ul {
+    list-style: none;
+  }
+  a {
+    font-family: $monster;
+    text-decoration: none;
+    color: $purple;
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+  }
+  .mobileNav a {
+    font-size: 2rem; //placeholder
+  }
+  .desktopNav a {
+    font-size: 2.8rem; //placeholder
+  }
+  .mobileMenuIcon {
+    font-size: 3rem; //went smaller to fit on 320px screens
+  }
+}
+
+p {
+  font-family: $halogen;
+  font-size: 1.6rem;
+  &.gameTagline {
+    font-weight: $bold;
+    font-style: oblique;
+  }
+}
+
+.buttons a,
+.submitButtons {
+    text-align: center;
+    font-family: $monster;
+    font-size: 3.5rem; //slightly smaller to fit 320px screens
+    color: $orange;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 5px solid $purple;
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+}
+
+.score {
+  font-family: $halogen;
+  font-size: 2rem;
+}
+
+form {
+  font-family: $halogen;
+  li {
+    font-size: 2rem;
+  }
+}
+
+footer p {
+  font-size: 1.3rem;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: $purple;
+    padding: 10px 0;
+    &:hover,
+    &:focus {
+      color: $blue;
+      text-decoration: underline;
+    }
+  }
+}
+

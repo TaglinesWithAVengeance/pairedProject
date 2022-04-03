@@ -14,50 +14,52 @@
 </head>
 <body>
   <header>
-    <div class="titleContainer">
-      <h1>Taglines...with a <span>vengeance</span></h1>
-      <p>Test your knowledge of movie taglines with this fun quiz!</p>
-    </div>
+    <div class="wrapper">
+      <div class="titleContainer">
+        <h1>Taglines...with a <span>vengeance!</span></h1>
+        <h3>Test your knowledge of movie taglines with this fun quiz!</h3>
+      </div><!-- .titleContainer END -->
 
-    <nav>
-      <div class="mobileContainer">
-        <div class="mobileMenuIcon">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-        <ul class="mobileNav">
+      <nav>
+        <div class="mobileContainer">
+          <div class="mobileMenuIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <ul class="mobileNav">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./gameplay.html">Start!</a></li>
+          </ul>
+        </div><!-- .mobileContainer END -->
+        <ul class="desktopNav hidden">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./gameplay.html">Start!</a></li>
         </ul>
-      </div>
-      <ul class="desktopNav hidden">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./gameplay.html">Start!</a></li>
-      </ul>
-    </nav>
+      </nav>
+    </div><!-- .wrapper END -->
   </header>
 
   <main>
-    <section class="about">
+    <section class="about wrapper">
       <div class="imgContainer">
-        <img src="" alt="">
-      </div>
+        <img src="./assets/aboutPhoto.jpg" alt="A collection of movie posters">
+      </div><!-- .imgContainer END -->
 
       <div class="textContainer">
         <h2>About</h2>
-        <p class="creators"><span>Taglines...with a vengeance</span> is created by movie fans Cristina Grosser and Ben Bourgon.</p>
-        <p>Data for this project was sourced from <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie Database (TMDb) API</a>.</p>
+        <p>Taglines...with a <span>vengeance</span> is created by movie fans Cristina Grosser and Ben Bourgon.</p>
+        <p>Data for this project was sourced from<a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie Database (TMDb) API.</a></p>
         <p>This product used the TMDb API, but is not endorsed or certified by TMDb.</p>
         <div class="logoContainer">
-          <img src="" alt="">
-        </div>
-      </div>
+          <img src="./assets/tmdbLogo.svg" alt="The TMDb logo">
+        </div><!-- .logoContainer END -->
+      </div><!-- .textContainer END -->
     </section>
   </main>
 
   <footer>
-    <p>Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB Api</a></p>
+    <p class="wrapper">Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB API</a></p>
   </footer>
   <!-- <script src="./script.js"></script> -->
 </body>

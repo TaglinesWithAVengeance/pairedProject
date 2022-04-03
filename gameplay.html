@@ -14,73 +14,90 @@
 </head>
 <body>
   <header>
-    <div class="titleContainer">
-      <h1>Taglines...with a <span>vengeance</span></h1>
-      <p>Test your knowledge of movie taglines with this fun quiz!</p>
-    </div>
+    <div class="wrapper">
+      <div class="titleContainer">
+        <h1>Taglines...with a <span>vengeance!</span></h1>
+        <h3>Test your knowledge of movie taglines with this fun quiz!</h3>
+      </div><!-- .titleContainer END -->
 
-    <nav>
-      <div class="mobileContainer">
-        <div class="mobileMenuIcon">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-        <ul class="mobileNav">
+      <nav>
+        <div class="mobileContainer">
+          <div class="mobileMenuIcon">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <ul class="mobileNav">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./gameplay.html">Start!</a></li>
+          </ul>
+        </div><!-- .mobileContainer END -->
+        <ul class="desktopNav hidden">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./gameplay.html">Start!</a></li>
         </ul>
-      </div>
-      <ul class="desktopNav hidden">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./gameplay.html">Start!</a></li>
-      </ul>
-    </nav>
+      </nav>
+    </div><!-- .wrapper END -->
   </header>
 
   <main>
-    <section class="introduction">
+    <section class="gamePlay wrapper">
       <div class="posterDisplay">
-        <div class="imgContainer">
-          <img src="" alt="A question mark">
-        </div>
         <div class="iconContainer">
-          <i class="fa-regular fa-circle-x"></i>
+          <i class="fa-regular fa-circle-xmark"></i>
+        </div><!-- .iconContainer END --> 
+        <div class="posterReveal">
+          <p>?</p> <!-- Will change innerHTML of posterReveal to an img with src/alt -->
+        </div><!-- .posterReveal END -->
+        <div class="iconContainer">
           <i class="fa-regular fa-circle-check"></i>
-        </div>
-      </div>
+        </div><!-- .iconContainer END --> 
+      </div><!-- .posterDisplay END -->
 
       <div class="textContainer">
-        <h2>Question <span class="questionCount">1</span>:</h2>
+        <div class="questionScore">
+          <h2>Question <span id="questionCount">1</span>:</h2>
+          <p class="score">Score: <span>0/5</span></p>
+        </div><!-- .questionScore END -->
+
         <h2>What movie has the tagline...?</h2>
-        <p class="taglineQuestion">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</p>
-        <form action="">
-          <label for="aOption">A movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="aOption" checked="true">
+        
+        <form action="#">
+          <legend>"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</legend>
 
-          <label for="bOption">B movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="bOption">
+          <ul>
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="aOption">
+              <label for="aOption">A movie</label>
+            </li>
 
-          <label for="cOption">C movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="cOption">
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="bOption">
+              <label for="bOption">B movie</label>
+            </li>
 
-          <label for="dOption">D movie</label>
-          <input type="radio" name="taglineChoice" value="lorem" id="dOption">
-      
-          <button class="buttons" type="submit">Submit</button>
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="cOption">
+              <label for="cOption">C movie</label>
+            </li>
+
+            <li>
+              <input type="radio" name="taglineChoice" value="lorem" id="dOption">
+              <label for="dOption">D movie</label>
+            </li>
+          </ul>
+
+          <div class="buttonsContainer">
+            <button class="submitButtons" type="submit">Submit</button>
+            <button class="submitButtons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
+          </div><!-- .buttonsContainer END -->
         </form>
-      </div>
-
-      <div class="scoreContainer">
-        <p class="score">Score: <span>0/5</span></p>
-        <!-- is Next> a button because it changes the page, not a link that takes us to a new page?? -->
-        <button class="buttons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button>
-      </div>
+      </div><!-- .textContainer END -->
     </section>
   </main>
 
   <footer>
-    <p>Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB Api</a></p>
+    <p class="wrapper">Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB API</a></p>
   </footer>
   <!-- <script src="./script.js"></script> -->
 </body>

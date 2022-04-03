@@ -1,0 +1,150 @@
+// index main
+.introduction {
+  .imgContainer {
+    margin: 5px auto;
+    overflow: hidden;
+    height: 275px;
+    width: 275px;
+    border-radius: 25px;
+  }
+  .textContainer {
+    padding: 20px 0;
+    h2 {
+      text-align: center;
+    }
+    .instructions {
+      padding: 20px 0;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
+}
+
+
+// about main specifics
+.about {
+  .imgContainer {
+    margin: 5px auto;
+    height: 275px;
+    width: 275px;
+    border-radius: 25px;
+    overflow: hidden;
+    img {
+      max-height: 100%;
+      max-width: 150%;
+    }
+  }
+  .textContainer {
+    h2 {
+      text-transform: uppercase;
+      text-align: left;
+      padding: 10px 0;
+      font-weight: $light;
+    }
+    p {
+      padding: 10px 0;
+      span {
+        text-transform: uppercase;
+      }
+      a {
+        color: $purple;
+        display: inline;
+        &:hover,
+        &:focus {
+          color: $blue;
+        }
+      }
+    }
+    .logoContainer {
+      padding-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      img {
+        width: 30%;
+      }
+    }
+  }
+}
+
+
+// gameplay main
+.posterDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  .posterReveal {
+    width: 50%;
+    max-width: 170px;
+    background: $purple;
+    border: 10px solid $seafoam;
+    p {
+      color: $orange;
+      font-family: $monster;
+      text-align: center;
+      font-size: 10rem;
+      padding: 35px 0;
+    }
+  }
+  .iconContainer {
+    padding: 0 15px;
+    i {
+      font-size: 3rem;
+    }
+  }
+}
+
+.gamePlay {
+  .questionScore {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  form {
+    padding: 10px 0;
+    legend {
+      font-size: 1.7rem;
+    }
+    .buttonsContainer {
+      display: flex;
+      justify-content: space-between;
+      .submitButtons {
+        background: transparent;
+      }
+    }
+  }
+}
+
+// styling radio buttons for gameplay
+.gamePlay ul {
+  list-style: none;
+  margin: 15px 0;
+  li {
+    padding: 5px 0;
+    input[type='radio']{
+      display: none;
+      &:checked + * {
+        color: $orange;
+      }
+    }
+    input[type="radio"] + *::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.3rem;
+      border-radius: 50%;
+      border-style: solid;
+      border-width: 0.1rem;
+      border-color: $purple;
+    }
+    input[type="radio"]:checked + *::before {
+      background: radial-gradient($orange 0%, $orange 40%, transparent 50%, transparent);
+      border-color: $orange;
+    }
+  }
+}

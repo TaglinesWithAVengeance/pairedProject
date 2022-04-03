@@ -1,0 +1,31 @@
+header {
+  background-color: $seafoam;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.desktopNav {
+  display: none;
+}
+
+.mobileContainer {
+  .mobileMenuIcon {
+    padding-top: 10px;
+    &:hover,
+    &:focus {
+      color: $orange;
+      transform: scale(1.1);
+    }
+  }
+  .mobileNav {
+    border: 3px solid $purple;
+    background-color: $orange;
+    position: fixed;
+    right: -200px;
+    top: 50px;
+  }
+}
