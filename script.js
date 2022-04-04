@@ -1,7 +1,3 @@
-//mobile menu scripting
-
-
-
 // apiKey: 81816879fd2d3541c56bc904bce4b7e3
 
 // example URL: https://api.themoviedb.org/3/movie/550?api_key=81816879fd2d3541c56bc904bce4b7e3
@@ -36,18 +32,63 @@
 const app = {};
 
 // app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
-app.url = 'https://api.themoviedb.org/3/search/movie?api_key=81816879fd2d3541c56bc904bce4b7e3&query=action&page=1';
+const url = new URL('https://api.themoviedb.org/3/discover/movie');
+
+url.search = new URLSearchParams({
+  api_key: '81816879fd2d3541c56bc904bce4b7e3',
+  language: 'en-US',
+  certification_country: 'usa'
+})
+
+
+
+//movie language filtering?
 
 //discover/movie to get id
 //then movie/{movieID}
 
-fetch(app.url).then((response) => {
-  return response.json();
-}).then((jsonRes) => {
-  const results = jsonRes["results"];
-  console.log(results);
-  results.forEach((movie) => {
-    console.log(movie.id);
-  })
-})
+// fetch(url)
+//   .then((response) => {
+//     return response.json();
+//   }).then((jsonRes) => {
+//     const results = jsonRes["results"];
+//     console.log(results);
+//     const posterPath = "/qsdjk9oAKSQMWs0Vt5Pyfh6O4GZ.jpg";
+//     const imgPath = new URL(`https://api.themoviedb.org/3/discover/movie?api_key=81816879fd2d3541c56bc904bce4b7e3&${posterPath}`);
+//     const imgContainer = document.querySelector('.landingPhoto');
+//     imgContainer.src = imgPath;
+//   })
 
+app.getMovies = () => {
+  fetch(url).then((response) => {
+    return response.json();
+  }).then((jsonRes) => {
+    const results = jsonRes["results"];
+    const singleMovieID = results[0].id;
+    const singleMoviePosterPath = results[0].poster_path;
+    app.getMovieData(singleMovieID, singleMoviePosterPath);
+  })
+}
+
+app.getMovieData = (movieID, poster_path) => {
+  console.log(movieID);
+  console.log(poster_path);
+  const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieID}`);
+  movieUrl.search = new URLSearchParams({
+    api_key: '81816879fd2d3541c56bc904bce4b7e3'
+  })
+
+  fetch(movieUrl)
+    .then((response) => {
+      return response.json();
+    })
+    .then((movieData) => {
+      console.log(movieData);
+    })
+}
+
+app.init = () => {
+  app.getMovies();
+}
+
+app.init();
