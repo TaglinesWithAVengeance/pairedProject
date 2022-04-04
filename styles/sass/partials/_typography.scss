@@ -5,20 +5,19 @@ html {
 
 h1 {
   font-family: $monster;
-  font-size: 2.5rem; //went smaller to fit on 320px screens
-  p {
-    font-family: $monster;
-    font-size: 2.5rem;
-    display: block;
-  }
+  font-size: 2.9rem; //went smaller to fit on 320px screens
   span {
     text-transform: uppercase;
+  }
+  .taglinesh1 {
+    display: block;
+    text-transform: lowercase;
   }
 }
 
 h2 {
   font-family: $monster;
-  font-size: 2.4rem;
+  font-size: 1.9rem; // adjusted to fit on one line at 320px
   span {
     text-transform: uppercase;
   }
@@ -69,14 +68,15 @@ p {
 .submitButtons {
     text-align: center;
     font-family: $monster;
-    font-size: 3.5rem; //slightly smaller to fit 320px screens
+    font-size: 3.2rem; //slightly smaller to fit 320px screens
     color: $orange;
+    background: white;
     text-decoration: none;
     text-transform: uppercase;
     border: 5px solid $purple;
     &:hover,
     &:focus {
-      color: $blue;
+      border: 5px solid $orange;
     }
 }
 

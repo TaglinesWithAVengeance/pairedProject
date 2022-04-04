@@ -272,20 +272,19 @@ html {
 
 h1 {
   font-family: ccmonstermash, sans-serif;
-  font-size: 2.5rem;
-}
-h1 p {
-  font-family: ccmonstermash, sans-serif;
-  font-size: 2.5rem;
-  display: block;
+  font-size: 2.9rem;
 }
 h1 span {
   text-transform: uppercase;
 }
+h1 .taglinesh1 {
+  display: block;
+  text-transform: lowercase;
+}
 
 h2 {
   font-family: ccmonstermash, sans-serif;
-  font-size: 2.4rem;
+  font-size: 1.9rem;
 }
 h2 span {
   text-transform: uppercase;
@@ -333,8 +332,9 @@ p.gameTagline {
 .submitButtons {
   text-align: center;
   font-family: ccmonstermash, sans-serif;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   color: #FF8811;
+  background: white;
   text-decoration: none;
   text-transform: uppercase;
   border: 5px solid #392F5A;
@@ -342,7 +342,7 @@ p.gameTagline {
 .buttons a:hover, .buttons a:focus,
 .submitButtons:hover,
 .submitButtons:focus {
-  color: #0F22B4;
+  border: 5px solid #FF8811;
 }
 
 .score {
@@ -441,6 +441,7 @@ main {
      object-fit: cover;
   -o-object-position: top center;
      object-position: top center;
+  border-radius: 25px;
 }
 .introduction .textContainer {
   display: -webkit-box;
@@ -461,13 +462,16 @@ main {
   padding: 20px 0;
 }
 .introduction .textContainer .buttons {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
+  display: block;
   text-align: center;
-  padding: 20px 20px 20px 0;
-  margin-top: 30px;
-  -ms-flex-item-align: center;
-      align-self: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 25px 0;
+  background-color: white;
+}
+.introduction .textContainer a {
+  padding: 10px 25px;
+  background-color: white;
 }
 
 .about {
@@ -486,7 +490,7 @@ main {
           align-items: flex-start;
 }
 .about .imgContainer {
-  margin: 10px auto;
+  margin: 25px auto;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   min-width: 100%;
@@ -496,6 +500,7 @@ main {
 }
 .about .aboutPhoto {
   width: 100%;
+  border-radius: 25px;
 }
 .about .textContainer h2 {
   text-transform: uppercase;
@@ -587,9 +592,11 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 25px auto;
 }
 .gamePlay form .buttonsContainer .submitButtons {
-  background: transparent;
+  background: white;
+  padding: 5px 15px;
 }
 
 .gamePlay ul {
@@ -618,7 +625,7 @@ main {
   border-color: #392F5A;
 }
 .gamePlay ul li input[type=radio]:checked + *::before {
-  background: radial-gradient(#FF8811 0%, #FF8811 40%, transparent 50%, transparent);
+  background: radial-gradient(#FF8811 0%, #FF8811 40%, white 50%, white);
   border-color: #FF8811;
 }
 
