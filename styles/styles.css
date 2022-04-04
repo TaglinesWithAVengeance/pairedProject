@@ -227,6 +227,21 @@ html {
 }
 
 /* end snippet */
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100vh;
+  max-height: 100%;
+}
+
 .wrapper {
   max-width: 1200px;
   width: 90%;
@@ -394,37 +409,93 @@ footer {
   background-color: #9DD9D2;
 }
 
+main {
+  height: 100%;
+}
+
+.introduction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 .introduction .imgContainer {
-  margin: 5px auto;
-  overflow: hidden;
+  display: block;
+  margin: 10px auto;
   height: 275px;
-  width: 275px;
+  width: 100%;
+  overflow-y: hidden;
   border-radius: 25px;
 }
-.introduction .textContainer {
-  padding: 20px 0;
+.introduction .landingPhoto {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
 }
-.introduction .textContainer h2 {
-  text-align: center;
+.introduction .textContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 20px 0;
 }
 .introduction .textContainer .instructions {
   padding: 20px 0;
 }
 .introduction .textContainer .buttons {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
   text-align: center;
+  padding: 20px 20px 20px 0;
   margin-top: 30px;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
-.about .imgContainer {
-  margin: 5px auto;
-  height: 275px;
-  width: 275px;
-  border-radius: 25px;
-  overflow: hidden;
+.about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
-.about .imgContainer img {
-  max-height: 100%;
-  max-width: 150%;
+.about .imgContainer {
+  margin: 10px auto;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  min-width: 100%;
+  max-height: 350px;
+  border-radius: 25px;
+  overflow-y: hidden;
+}
+.about .aboutPhoto {
+  width: 100%;
 }
 .about .textContainer h2 {
   text-transform: uppercase;
@@ -432,11 +503,12 @@ footer {
   padding: 10px 0;
   font-weight: 300;
 }
+.about .textContainer .siteTitle {
+  text-transform: uppercase;
+  font-weight: 700;
+}
 .about .textContainer p {
   padding: 10px 0;
-}
-.about .textContainer p span {
-  text-transform: uppercase;
 }
 .about .textContainer p a {
   color: #392F5A;
@@ -446,7 +518,7 @@ footer {
   color: #0F22B4;
 }
 .about .textContainer .logoContainer {
-  padding-bottom: 15px;
+  margin: 25px auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
