@@ -44,33 +44,27 @@ url.search = new URLSearchParams({
 
 //movie language filtering?
 
-//discover/movie to get id
-//then movie/{movieID}
 
-// fetch(url)
-//   .then((response) => {
-//     return response.json();
-//   }).then((jsonRes) => {
-//     const results = jsonRes["results"];
-//     console.log(results);
-//     const posterPath = "/qsdjk9oAKSQMWs0Vt5Pyfh6O4GZ.jpg";
-//     const imgPath = new URL(`https://api.themoviedb.org/3/discover/movie?api_key=81816879fd2d3541c56bc904bce4b7e3&${posterPath}`);
-//     const imgContainer = document.querySelector('.landingPhoto');
-//     imgContainer.src = imgPath;
-//   })
 
 app.getMovies = () => {
   fetch(url).then((response) => {
     return response.json();
   }).then((jsonRes) => {
     const results = jsonRes["results"];
-    const singleMovieID = results[0].id;
-    const singleMoviePosterPath = results[0].poster_path;
-    app.getMovieData(singleMovieID, singleMoviePosterPath);
+    const answerArray = [];
+
+    while(answerArray.length < 4) {
+      const oneID = results[Math.floor(Math.random() * 20)].id;
+      if(answerArray.includes(oneID) === false){
+        answerArray.push(oneID);
+      };
+      console.log(answerArray);
+    }
+    app.getMovieData(answerArray);
   })
 }
 
-app.getMovieData = (movieID, poster_path) => {
+app.getMovieData = () => {
   console.log(movieID);
   console.log(poster_path);
   const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieID}`);
@@ -83,7 +77,7 @@ app.getMovieData = (movieID, poster_path) => {
       return response.json();
     })
     .then((movieData) => {
-      console.log(movieData);
+      console.log(movieData.tagline);
     })
 }
 
