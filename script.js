@@ -84,4 +84,4 @@ app.init = () => {
   app.getMovies();
 }
 
-app.init();
+    app.init();
