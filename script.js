@@ -55,18 +55,24 @@ app.getMovies = () => {
 
     while(answerArray.length < 4) {
       const oneID = results[Math.floor(Math.random() * 20)].id;
-      if(answerArray.includes(oneID) === false){
+      // If the ID is not already in our array of IDs:
+      if(!answerArray.includes(oneID)){
+        console.log(oneID)
+        // check if the tagline exists
+        const tagline = app.getTaglines(answerArray, oneID)
+        console.log(tagline)
+        // if(tagline) {
+        //   // if the tagline exists, add it to the answer Array.
         answerArray.push(oneID);
+        //   console.log(answerArray)
+        // }
       };
     }
-    app.getMovieData(answerArray);
+    // app.getMovieData(answerArray);
   })
 }
-
-app.getMovieData = (movieIdArray) => {
-  console.log(movieIdArray);
-  movieIdArray.forEach(movieId => {
-    const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieId}`);
+app.getTaglines = (movieId) => {
+  const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieId}`);
     movieUrl.search = new URLSearchParams({
       api_key: '81816879fd2d3541c56bc904bce4b7e3'
     })
@@ -75,10 +81,28 @@ app.getMovieData = (movieIdArray) => {
         return response.json();
       })
       .then((movieData) => {
-        console.log(movieData.tagline);
+        if (movieData.tagline) {
+          return movieData.tagline
+        }
       })
-  })
 }
+
+// app.getMovieData = (movieIdArray) => {
+//   console.log(movieIdArray);
+//   movieIdArray.forEach(movieId => {
+//     const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieId}`);
+//     movieUrl.search = new URLSearchParams({
+//       api_key: '81816879fd2d3541c56bc904bce4b7e3'
+//     })
+//     fetch(movieUrl)
+//       .then((response) => {
+//         return response.json();
+//       })
+//       .then((movieData) => {
+//         console.log(movieData.tagline);
+//       })
+//   })
+// }
 
 app.init = () => {
   app.getMovies();
