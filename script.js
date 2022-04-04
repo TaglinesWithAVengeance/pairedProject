@@ -58,27 +58,26 @@ app.getMovies = () => {
       if(answerArray.includes(oneID) === false){
         answerArray.push(oneID);
       };
-      console.log(answerArray);
     }
     app.getMovieData(answerArray);
   })
 }
 
-app.getMovieData = () => {
-  console.log(movieID);
-  console.log(poster_path);
-  const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieID}`);
-  movieUrl.search = new URLSearchParams({
-    api_key: '81816879fd2d3541c56bc904bce4b7e3'
+app.getMovieData = (movieIdArray) => {
+  console.log(movieIdArray);
+  movieIdArray.forEach(movieId => {
+    const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieId}`);
+    movieUrl.search = new URLSearchParams({
+      api_key: '81816879fd2d3541c56bc904bce4b7e3'
+    })
+    fetch(movieUrl)
+      .then((response) => {
+        return response.json();
+      })
+      .then((movieData) => {
+        console.log(movieData.tagline);
+      })
   })
-
-  fetch(movieUrl)
-    .then((response) => {
-      return response.json();
-    })
-    .then((movieData) => {
-      console.log(movieData.tagline);
-    })
 }
 
 app.init = () => {
