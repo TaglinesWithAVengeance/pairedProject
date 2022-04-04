@@ -10,7 +10,7 @@ main {
   justify-content: space-between;
   .imgContainer {
     display: block;
-    margin: 10px;
+    margin: 10px auto;
     height: 275px;
     width: 100%; // allow for vertical scroll but image takes up 100% width of wrapper
     overflow-y: hidden;
@@ -25,7 +25,7 @@ main {
     display: flex;
     flex-basis: 100%;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     padding: 20px 0;
 
     .instructions {
@@ -44,16 +44,21 @@ main {
 
 // about main specifics
 .about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
   .imgContainer {
-    margin: 5px auto;
-    height: 275px;
-    width: 275px;
+    margin: 10px auto;
+    flex-basis: 100%;
+    min-width: 100%;
+    max-height: 350px;
     border-radius: 25px;
-    overflow: hidden;
-    img {
-      max-height: 100%;
-      max-width: 150%;
-    }
+    overflow-y: hidden;
+  }
+  .aboutPhoto {
+    width: 100%;
   }
   .textContainer {
     h2 {
@@ -62,11 +67,13 @@ main {
       padding: 10px 0;
       font-weight: $light;
     }
+    .siteTitle {
+      text-transform: uppercase;
+      font-weight: $bold;
+      
+    }
     p {
       padding: 10px 0;
-      span {
-        text-transform: uppercase;
-      }
       a {
         color: $purple;
         display: inline;
@@ -77,7 +84,7 @@ main {
       }
     }
     .logoContainer {
-      padding-bottom: 15px;
+      margin: 25px auto;
       display: flex;
       justify-content: center;
       img {
