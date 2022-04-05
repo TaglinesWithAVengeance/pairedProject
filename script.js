@@ -54,7 +54,7 @@ app.getMovies = () => {
     const answerArray = [];
 
     while(answerArray.length < 4) {
-      const oneID = results[Math.floor(Math.random() * 20)].id;
+      const oneID = results[Math.floor(Math.random() * results.length)].id;
       // If the ID is not already in our array of IDs:
       if(!answerArray.includes(oneID)){
         console.log(oneID)
@@ -72,7 +72,7 @@ app.getMovies = () => {
   })
 }
 app.getTaglines = (movieId) => {
-  const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieId}`);
+  const movieUrl = new URL(`https://api.themoviedb.org/3/movie${movieId}`);
     movieUrl.search = new URLSearchParams({
       api_key: '81816879fd2d3541c56bc904bce4b7e3'
     })
