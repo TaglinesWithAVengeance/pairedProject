@@ -96,12 +96,18 @@ app.selectRandomMovies = () => {
   const indexArray = [];
   while(indexArray.length < 4){
       const index = Math.floor(Math.random() * app.movieList.length);
-      if(!indexArray.includes(index)){}
+      if(!indexArray.includes(index)){
       indexArray.push(index);
+      }
+  }
+  //we now have 4 index numbers in an array
+  console.log(indexArray);
 
-      app.multipleChoiceArray.push(app.movieList[index]);
-    }
-
+  for(i = 0; i < indexArray.length; i++) { 
+    const indexValue = indexArray[i]; //take the value at each index of indexArray
+    console.log(indexValue); // four values from the indexArray
+    app.multipleChoiceArray.push(app.movieList[indexValue]); //go to app.movieList of 20 movies at that random index value and push into the multipleChoiceArray, taking 4 from the 20.
+  }
 }
 
 
