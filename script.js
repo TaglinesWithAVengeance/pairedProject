@@ -30,7 +30,7 @@
 
 
 const app = {};
-app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the 4 objects for the game round
+app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the objects for the game round
 
 // app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 const url = new URL('https://api.themoviedb.org/3/discover/movie');
@@ -40,7 +40,7 @@ url.search = new URLSearchParams({
   language: 'en-US',
   certification_country: 'usa',
   sort_by: 'vote_count.desc', //getting more popular searches
-  page: '20', // can change this with each call to randomize further, maybe pages 1-20 or 50???
+  page: '1', // can change this with each call to randomize further, maybe pages 1-20 or 50???
   with_original_language: 'en'
 })
 
@@ -77,9 +77,9 @@ app.calledData.then((movieObj) => {
 })
 
 app.changeTheData = (movie) => {
-  for(let i = 0; i < 20; i++){
+  for(let i = 0; i < 20; i++){ //one problem may be empty taglines causing infinite loop. Could reduce to 10 movies to chose from? 
     if(movie[i].tagline){
-      const { title, tagline, poster_path } = movie[i];
+      const {title, tagline, poster_path} = movie[i];
       app.movieList[i].name = title;
       app.movieList[i].tagline = tagline;
       app.movieList[i].posterPath = poster_path;
@@ -91,7 +91,7 @@ app.changeTheData = (movie) => {
 
 app.selectRandomMovies = () => {
   // Choose a random movie from the list of 20 movies
-// Making sure it is not the same index twice
+  // Making sure it is not the same index twice
   app.multipleChoiceArray = [];
   const indexArray = [];
   while(indexArray.length < 4){
@@ -108,6 +108,26 @@ app.selectRandomMovies = () => {
     console.log(indexValue); // four values from the indexArray
     app.multipleChoiceArray.push(app.movieList[indexValue]); //go to app.movieList of 20 movies at that random index value and push into the multipleChoiceArray, taking 4 from the 20.
   }
+  console.log(app.multipleChoiceArray);
+  app.displayMovieInfo(app.multipleChoiceArray);
+}
+
+app.displayMovieInfo = (multipleChoiceArray) => {
+  console.log("multiChoiceArray[0]", multipleChoiceArray[0]);
+// // having a problem here getting into the name, tagline, and posterPath values. 
+// // I looked at reworking how we push them into the multipleChoiceArray, but instead of giving my an array with objects that have no accessible values, I ended up with an array with no accessible values. 
+// // with this current code, the console shows app.multipleChoiceArray as Array(4) [ {}, {}, {}, {} ]
+// // when you log app.multipleChoiceArray[0] it shows Object { }. 
+// // you have to click the arrow to open them in the console to see the content, but still can't access it
+// // yet, typing app.multipleChoiceArray[0].name directly in the console returns the value we want!
+
+//   // querying our elements to change
+//   const formEl = document.querySelector('form');
+//   // console.log(formEl); //doesn't include the legend
+//   const legendEl = document.querySelector('legend');
+  
+//   formEl['aOption'].value = app.multipleChoiceArray[0];
+//   console.log(formEl['aOption']);
 }
 
 
