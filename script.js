@@ -87,10 +87,27 @@ app.changeTheData = (movie) => {
   }
 }
 
+// Choose 4 random movies from the movieList array
+
+app.selectRandomMovies = () => {
+  // Choose a random movie from the list of 20 movies
+// Making sure it is not the same index twice
+  app.multipleChoiceArray = [];
+  const indexArray = [];
+  while(indexArray.length < 4){
+      const index = Math.floor(Math.random() * app.movieList.length);
+      if(!indexArray.includes(index)){}
+      indexArray.push(index);
+
+      app.multipleChoiceArray.push(app.movieList[index]);
+    }
+
+}
 
 
 app.init = () => {
   app.getMovies();
+  app.selectRandomMovies();
 }
 
 app.init();
