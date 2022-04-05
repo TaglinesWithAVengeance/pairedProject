@@ -37,24 +37,22 @@ const url = new URL('https://api.themoviedb.org/3/discover/movie');
 url.search = new URLSearchParams({
   api_key: '81816879fd2d3541c56bc904bce4b7e3',
   language: 'en-US',
-  certification_country: 'usa'
+  certification_country: 'usa',
+  sort_by: 'vote_count.desc', //getting more popular searches
+  page: '20', // can change this with each call to randomize further, maybe pages 1-20 or 50???
+  with_original_language: 'en'
 })
-
-
-
-//movie language filtering?
-
-
 
 app.getMovies = () => {
   fetch(url).then((response) => {
     return response.json();
   }).then((jsonRes) => {
     const results = jsonRes["results"];
+    console.log(results);
     const answerArray = [];
 
-    while(answerArray.length < 4) {
-      const oneID = results[Math.floor(Math.random() * 20)].id;
+    while(answerArray.length < 20) { //pulling all 20 ids on the page, checking taglines later
+      const oneID = results[Math.floor(Math.random() * 20)].id; //can be beneficial to randomize here to reduce duplicate combos. We can change the page # we are pulling from to further randomize each question.
       if(answerArray.includes(oneID) === false){
         answerArray.push(oneID);
       };
@@ -74,10 +72,23 @@ app.getMovieData = (movieIdArray) => {
       .then((response) => {
         return response.json();
       })
-      .then((movieData) => {
-        console.log(movieData.tagline);
+      .then((movieData) => { //gives the 20 movies in a random order
+        // console.log(movieData); 
+        // const fourMovieNames = [] //then we take the first 4 names with or without taglines
+        // while(fourMovieNames.length < 4){
+        //   fourMovieNames.push(movieData.title);
+        //   console.log(fourMovieNames);
+        // }
+        app.useMovieData(movieData);
       })
   })
+}
+
+app.useMovieData = (movieData) => {
+  const tagline = movieData.tagline;
+  if(tagline){
+    console.log(tagline);
+  }
 }
 
 app.init = () => {
