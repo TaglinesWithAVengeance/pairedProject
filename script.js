@@ -5,7 +5,7 @@
 // API Read Access Token - not sure if this is needed just yet
 // eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MTgxNjg3OWZkMmQzNTQxYzU2YmM5MDRiY2U0YjdlMyIsInN1YiI6IjYyNDRjYjk1Yzc0MGQ5MDA4OWYzYmU4NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Xm4RpetLzBr71Vz9jOFp5OpD29DS45Z5mIJ2rzpE1YI
 
-
+// ONLY RUN ON THE GAMEPLAY PAGE
 // namespacing
 // get the data, a random movie (we can randomize the genre each question or have the user choose, but we need to obtain the genre to query for a movie id first)
   // name
@@ -30,6 +30,7 @@
 
 
 const app = {};
+app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the 4 objects for the game round
 
 // app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 const url = new URL('https://api.themoviedb.org/3/discover/movie');
@@ -43,56 +44,53 @@ url.search = new URLSearchParams({
   with_original_language: 'en'
 })
 
-app.getMovies = () => {
-  fetch(url).then((response) => {
-    return response.json();
-  }).then((jsonRes) => {
-    const results = jsonRes["results"];
-    console.log(results);
-    const answerArray = [];
+app.getMovies = async () => {
+  const movieResponse = await fetch(url);
+  const movieData = await movieResponse.json();
 
-    while(answerArray.length < 20) { //pulling all 20 ids on the page, checking taglines later
-      const oneID = results[Math.floor(Math.random() * 20)].id; //can be beneficial to randomize here to reduce duplicate combos. We can change the page # we are pulling from to further randomize each question.
-      if(answerArray.includes(oneID) === false){
-        answerArray.push(oneID);
-      };
+  return movieData;
+}
+
+app.calledData = app.getMovies();
+
+
+app.calledData.then((movieObj) => {
+  const idArray = []
+    while(idArray.length < 20){
+      for(let i = 0; i < 20; i++){
+        idArray.push(movieObj['results'][i].id);
+      }
     }
-    app.getMovieData(answerArray);
-  })
-}
 
-app.getMovieData = (movieIdArray) => {
-  console.log(movieIdArray);
-  movieIdArray.forEach(movieId => {
-    const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${movieId}`);
-    movieUrl.search = new URLSearchParams({
-      api_key: '81816879fd2d3541c56bc904bce4b7e3'
+    app.promiseArray = idArray.map(idNumber => {
+      return indMovieCall(idNumber);
+    });
+
+    function indMovieCall(idNumber) {
+      return fetch(`https://api.themoviedb.org/3/movie/${idNumber}?api_key=81816879fd2d3541c56bc904bce4b7e3`)
+      .then(res => res.json()); //promise per id
+    };
+
+    Promise.all(app.promiseArray).then(eachMovie => {
+      return app.changeTheData(eachMovie);
     })
-    fetch(movieUrl)
-      .then((response) => {
-        return response.json();
-      })
-      .then((movieData) => { //gives the 20 movies in a random order
-        // console.log(movieData); 
-        // const fourMovieNames = [] //then we take the first 4 names with or without taglines
-        // while(fourMovieNames.length < 4){
-        //   fourMovieNames.push(movieData.title);
-        //   console.log(fourMovieNames);
-        // }
-        app.useMovieData(movieData);
-      })
-  })
-}
+})
 
-app.useMovieData = (movieData) => {
-  const tagline = movieData.tagline;
-  if(tagline){
-    console.log(tagline);
+app.changeTheData = (movie) => {
+  for(let i = 0; i < 20; i++){
+    if(movie[i].tagline){
+      const { title, tagline, poster_path } = movie[i];
+      app.movieList[i].name = title;
+      app.movieList[i].tagline = tagline;
+      app.movieList[i].posterPath = poster_path;
+    }
   }
 }
+
+
 
 app.init = () => {
   app.getMovies();
 }
 
-    app.init();
+app.init();
