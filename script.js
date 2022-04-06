@@ -113,12 +113,30 @@ app.selectRandomMovies = (listOfMovies) => {
 }
 
 app.displayMovieInfo = (fourMoviesArray) => {
-  // querying our elements to change
+  // querying our elements to change them later
   const formEl = document.querySelector('form');
+  const aOption = document.querySelector('#aOption')
+  const bOption = document.querySelector('#bOption')
+  const cOption = document.querySelector('#cOption')
+  const dOption = document.querySelector('#dOption')
   // console.log(formEl); //doesn't include the legend
   const legendEl = document.querySelector('legend');
-  formEl['aOption'].value = fourMoviesArray[0];
-  console.log(formEl['aOption']);
+  // Choose a random number between 1 and 4 (movies)
+  let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length)
+  // assign one movie to be the correct one.
+  fourMoviesArray[randomMovieIndex].correctMovie = true;
+  legendEl.innerText = `"${fourMoviesArray[randomMovieIndex].tagline}"`
+  // Not sure if there is a way to do the following with a loop?
+  aOption.value = fourMoviesArray[0].name;
+  aOption.labels[0].innerText = fourMoviesArray[0].name
+  bOption.value = fourMoviesArray[1].name;
+  bOption.labels[0].innerText = fourMoviesArray[1].name
+  cOption.value = fourMoviesArray[2].name;
+  cOption.labels[0].innerText = fourMoviesArray[2].name
+  dOption.value = fourMoviesArray[3].name;
+  dOption.labels[0].innerText = fourMoviesArray[3].name
+
+  // and then we add an Event listener to check if on submit, the value of the selected input is equal to the value of the name property of fourMoviesArray[randomMovieIndex]
 }
 
 
