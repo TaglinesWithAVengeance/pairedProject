@@ -1,5 +1,4 @@
-// apiKey: 81816879fd2d3541c56bc904bce4b7e3
-
+// API key: 81816879fd2d3541c56bc904bce4b7e3
 // example URL: https://api.themoviedb.org/3/movie/550?api_key=81816879fd2d3541c56bc904bce4b7e3
 
 // API Read Access Token - not sure if this is needed just yet
@@ -32,11 +31,11 @@
 const app = {};
 app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the objects for the game round
 
-// app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
+app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 const url = new URL('https://api.themoviedb.org/3/discover/movie');
 
 url.search = new URLSearchParams({
-  api_key: '81816879fd2d3541c56bc904bce4b7e3',
+  api_key: app.apiKey,
   language: 'en-US',
   certification_country: 'usa',
   sort_by: 'vote_count.desc', //getting more popular searches
@@ -67,7 +66,11 @@ app.calledData.then((movieObj) => {
     });
 
     function indMovieCall(idNumber) {
-      return fetch(`https://api.themoviedb.org/3/movie/${idNumber}?api_key=81816879fd2d3541c56bc904bce4b7e3`)
+      const movieUrl = new URL(`https://api.themoviedb.org/3/movie/${idNumber}`)
+      movieUrl.search = new URLSearchParams({
+        api_key: app.apiKey
+      })
+      return fetch(movieUrl)
       .then(res => res.json()); //promise per id
     };
 
@@ -77,63 +80,50 @@ app.calledData.then((movieObj) => {
 })
 
 app.changeTheData = (movie) => {
-  for(let i = 0; i < 20; i++){ //one problem may be empty taglines causing infinite loop. Could reduce to 10 movies to chose from? 
+  for(let i = 0; i < 20; i++){ //one problem may be empty taglines causing infinite loop. Could reduce to 10 movies to choose from? 
     if(movie[i].tagline){
-      const {title, tagline, poster_path} = movie[i];
+      const { title, tagline, poster_path } = movie[i];
       app.movieList[i].name = title;
       app.movieList[i].tagline = tagline;
       app.movieList[i].posterPath = poster_path;
     }
   }
+  app.selectRandomMovies(app.movieList);
 }
 
 // Choose 4 random movies from the movieList array
 
-app.selectRandomMovies = () => {
+app.selectRandomMovies = (listOfMovies) => {
   // Choose a random movie from the list of 20 movies
   // Making sure it is not the same index twice
   app.multipleChoiceArray = [];
   const indexArray = [];
   while(indexArray.length < 4){
-      const index = Math.floor(Math.random() * app.movieList.length);
+      const index = Math.floor(Math.random() * listOfMovies.length);
       if(!indexArray.includes(index)){
       indexArray.push(index);
       }
   }
-  //we now have 4 index numbers in an array
-  console.log(indexArray);
-
+  //We now have 4 index numbers in an array
   for(i = 0; i < indexArray.length; i++) { 
     const indexValue = indexArray[i]; //take the value at each index of indexArray
-    console.log(indexValue); // four values from the indexArray
-    app.multipleChoiceArray.push(app.movieList[indexValue]); //go to app.movieList of 20 movies at that random index value and push into the multipleChoiceArray, taking 4 from the 20.
+    app.multipleChoiceArray.push(listOfMovies[indexValue]); //go to our list of 20 movies at that random index value and push into the multipleChoiceArray, taking 4 from the 20.
   }
-  console.log(app.multipleChoiceArray);
   app.displayMovieInfo(app.multipleChoiceArray);
 }
 
-app.displayMovieInfo = (multipleChoiceArray) => {
-  console.log("multiChoiceArray[0]", multipleChoiceArray[0]);
-// // having a problem here getting into the name, tagline, and posterPath values. 
-// // I looked at reworking how we push them into the multipleChoiceArray, but instead of giving my an array with objects that have no accessible values, I ended up with an array with no accessible values. 
-// // with this current code, the console shows app.multipleChoiceArray as Array(4) [ {}, {}, {}, {} ]
-// // when you log app.multipleChoiceArray[0] it shows Object { }. 
-// // you have to click the arrow to open them in the console to see the content, but still can't access it
-// // yet, typing app.multipleChoiceArray[0].name directly in the console returns the value we want!
-
-//   // querying our elements to change
-//   const formEl = document.querySelector('form');
-//   // console.log(formEl); //doesn't include the legend
-//   const legendEl = document.querySelector('legend');
-  
-//   formEl['aOption'].value = app.multipleChoiceArray[0];
-//   console.log(formEl['aOption']);
+app.displayMovieInfo = (fourMoviesArray) => {
+  // querying our elements to change
+  const formEl = document.querySelector('form');
+  // console.log(formEl); //doesn't include the legend
+  const legendEl = document.querySelector('legend');
+  formEl['aOption'].value = fourMoviesArray[0];
+  console.log(formEl['aOption']);
 }
 
 
 app.init = () => {
   app.getMovies();
-  app.selectRandomMovies();
 }
 
 app.init();
