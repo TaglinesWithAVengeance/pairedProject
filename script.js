@@ -32,10 +32,10 @@ const app = {};
 app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the objects for the game round
 
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
-app.searchPage = 1 // 
-const url = new URL('https://api.themoviedb.org/3/discover/movie');
+app.searchPage = 1 // Starts with the page of the most popular movies.
+app.url = new URL('https://api.themoviedb.org/3/discover/movie');
 
-url.search = new URLSearchParams({
+app.url.search = new URLSearchParams({
   api_key: app.apiKey,
   language: 'en-US',
   certification_country: 'usa',
@@ -45,7 +45,7 @@ url.search = new URLSearchParams({
 })
 
 app.getMovies = async () => {
-  const movieResponse = await fetch(url);
+  const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
 
   return movieData;
@@ -137,10 +137,11 @@ app.displayMovieInfo = (fourMoviesArray) => {
   dOption.labels[0].innerText = fourMoviesArray[3].name
 
   const submitButtonEl = document.querySelector("#submit")
+  const nextButtonEl = document.querySelector("#next")
+  const scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber')
   let userScore = 0
   let questionNumber = 1
   app.questionSubmitted = false
-  // const questionCountEl = document.querySelector('#questionCount')
 
   // Add an event listener to the submit button to check the user's answer.
   submitButtonEl.addEventListener('click', (event) => {
@@ -150,7 +151,6 @@ app.displayMovieInfo = (fourMoviesArray) => {
     const radioButtons = document.querySelectorAll('input[type="radio"]')
     const selectedOption = formEl.querySelector('input[type="radio"]:checked')
     const scoreCorrectEl = document.querySelector('#scoreCorrect')
-    const scoreTotalEl = document.querySelector('#scoreTotal')
     const checkIconEl = document.querySelector('.fa-circle-check')
     const xIconEl = document.querySelector('.fa-circle-xmark')
     // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
@@ -172,7 +172,7 @@ app.displayMovieInfo = (fourMoviesArray) => {
         scoreCorrectEl.innerText = userScore;
         // Increase the questions answered by 1.
         
-        scoreTotalEl.innerText = questionNumber;
+        scoreQuestionNumberEl.innerText = questionNumber;
         // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
         checkIconEl.style["background-color"] = "green";
         checkIconEl.style["color"] = "black";
@@ -188,7 +188,20 @@ app.displayMovieInfo = (fourMoviesArray) => {
     } else {
     }
   })
-  
+  nextButtonEl.addEventListener("click", (event) => {
+    event.preventDefault();
+    // Might want to create a refresh the page function to clear out the current contents.
+    app.searchPage++
+    console.log(app.searchPage)
+    console.log(app.url.search);
+    // stuck on page 1...
+    questionNumber++;
+    const questionCountEl = document.querySelector('#questionCount')
+    questionCountEl.innerText = questionNumber
+    scoreQuestionNumberEl.innerText = questionNumber
+    app.getMovies();
+    console.log(app.movieList)
+  })
 }
 
 
