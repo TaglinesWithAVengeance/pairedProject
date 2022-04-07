@@ -32,6 +32,7 @@ const app = {};
 app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the objects for the game round
 
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
+app.searchPage = 1 // 
 const url = new URL('https://api.themoviedb.org/3/discover/movie');
 
 url.search = new URLSearchParams({
@@ -39,7 +40,7 @@ url.search = new URLSearchParams({
   language: 'en-US',
   certification_country: 'usa',
   sort_by: 'vote_count.desc', //getting more popular searches
-  page: '1', // can change this with each call to randomize further, maybe pages 1-20 or 50???
+  page: app.searchPage.toString(), // can change this with each call to randomize further, maybe pages 1-20 or 50???
   with_original_language: 'en'
 })
 
@@ -114,7 +115,6 @@ app.selectRandomMovies = (listOfMovies) => {
 
 app.displayMovieInfo = (fourMoviesArray) => {
   // querying our elements to change them later
-  const formEl = document.querySelector('form');
   const aOption = document.querySelector('#aOption')
   const bOption = document.querySelector('#bOption')
   const cOption = document.querySelector('#cOption')
@@ -123,7 +123,7 @@ app.displayMovieInfo = (fourMoviesArray) => {
   const legendEl = document.querySelector('legend');
   // Choose a random number between 1 and 4 (movies)
   let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length)
-  // assign one movie to be the correct one.
+  // assign one movie to be the correct one. Not sure if we actually need this property actually...
   fourMoviesArray[randomMovieIndex].correctMovie = true;
   legendEl.innerText = `"${fourMoviesArray[randomMovieIndex].tagline}"`
   // Not sure if there is a way to do the following with a loop?
@@ -136,7 +136,59 @@ app.displayMovieInfo = (fourMoviesArray) => {
   dOption.value = fourMoviesArray[3].name;
   dOption.labels[0].innerText = fourMoviesArray[3].name
 
-  // and then we add an Event listener to check if on submit, the value of the selected input is equal to the value of the name property of fourMoviesArray[randomMovieIndex]
+  const submitButtonEl = document.querySelector("#submit")
+  let userScore = 0
+  let questionNumber = 1
+  app.questionSubmitted = false
+  // const questionCountEl = document.querySelector('#questionCount')
+
+  // Add an event listener to the submit button to check the user's answer.
+  submitButtonEl.addEventListener('click', (event) => {
+    event.preventDefault();
+    // Query the form elements
+    const formEl = document.querySelector('form');
+    const radioButtons = document.querySelectorAll('input[type="radio"]')
+    const selectedOption = formEl.querySelector('input[type="radio"]:checked')
+    const scoreCorrectEl = document.querySelector('#scoreCorrect')
+    const scoreTotalEl = document.querySelector('#scoreTotal')
+    const checkIconEl = document.querySelector('.fa-circle-check')
+    const xIconEl = document.querySelector('.fa-circle-xmark')
+    // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
+    
+    if(!app.questionSubmitted){
+      // Prevent the user from selecting another option for this question.
+      for(i = 0; i < 4; i++){
+          radioButtons[i].disabled = true;
+        }
+      // Change app.questionSubmitted to true
+      app.questionSubmitted = true;
+      // Grey out the submit button
+      submitButtonEl.style["opacity"] = 0.3;
+      // Want to prevent the hover/focus state on the button but will need to revisit.
+      if(selectedOption.value === fourMoviesArray[randomMovieIndex].name){
+        
+        // If the user chooses the correct option. Up the user's score by 1.
+        userScore++
+        scoreCorrectEl.innerText = userScore;
+        // Increase the questions answered by 1.
+        
+        scoreTotalEl.innerText = questionNumber;
+        // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
+        checkIconEl.style["background-color"] = "green";
+        checkIconEl.style["color"] = "black";
+        checkIconEl.style["font-size"] = "5rem"
+        xIconEl.style["opacity"] = 0.3;
+      }else {
+        // If the user chooses the incorrect option: change the x icon color to red.
+        xIconEl.style["background-color"] = "red";
+        xIconEl.style["font-size"] = "5rem"
+        checkIconEl.style["opacity"] = 0.3;
+        // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
+      }
+    } else {
+    }
+  })
+  
 }
 
 

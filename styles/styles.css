@@ -565,6 +565,9 @@ main {
 }
 .posterDisplay .iconContainer i {
   font-size: 3rem;
+  border-radius: 50%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .gamePlay .questionScore {

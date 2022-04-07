@@ -124,6 +124,8 @@ main {
     padding: 0 15px;
     i {
       font-size: 3rem;
+      border-radius: 50%;
+      transition: 0.3s;
     }
   }
 }
