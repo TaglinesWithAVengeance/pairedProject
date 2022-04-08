@@ -39,7 +39,18 @@ for(i=0; i < 20; i++){
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 app.searchPage = 1 // Starts with the first page of the most popular movies.
 
-
+// Get the latest URL configuration data from the API
+app.getConfig = async () => {
+    app.configUrl = new URL("https://api.themoviedb.org/3/configuration")
+    app.configUrl.search = new URLSearchParams({
+      api_key: app.apiKey
+    })
+    const configRes = await fetch(app.configUrl)
+    const configData = await configRes.json();
+    app.baseImageUrl = configData.images.secure_base_url
+    app.posterSize = configData.images.poster_sizes[3];
+}
+// Retrieve the movie data
 app.getMovies = async () => {
   app.url = new URL('https://api.themoviedb.org/3/discover/movie');
   app.url.search = new URLSearchParams({
@@ -52,11 +63,11 @@ app.getMovies = async () => {
   })
   const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
-
-  return movieData;
+  console.log(movieData);
+  return movieData
 }
 
-app.calledData = app.getMovies();
+app.calledData = app.getMovies(movieData);
 
 
 app.calledData.then((movieObj) => {
@@ -65,6 +76,7 @@ app.calledData.then((movieObj) => {
       for(let i = 0; i < 20; i++){
         idArray.push(movieObj['results'][i].id);
       }
+      console.log(idArray)
     }
 
     app.promiseArray = idArray.map(idNumber => {
@@ -124,7 +136,18 @@ app.displayMovieInfo = (fourMoviesArray) => {
   const bOption = document.querySelector('#bOption')
   const cOption = document.querySelector('#cOption')
   const dOption = document.querySelector('#dOption')
-  const legendEl = document.querySelector('legend');
+  const legendEl = document.querySelector('legend')
+  // Clear out the previous question's values before we assign them.
+  aOption.value = ""
+  bOption.value = ""
+  cOption.value = ""
+  dOption.value = ""
+  legendEl.innerText = ""
+  aOption.labels[0].innerText = ""
+  bOption.labels[0].innerText = ""
+  cOption.labels[0].innerText = ""
+  dOption.labels[0].innerText = ""
+
   // Choose a random number between 1 and 4 (movies)
   let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length)
   // Assign one movie to be the correct one.
@@ -156,6 +179,7 @@ app.displayMovieInfo = (fourMoviesArray) => {
     app.scoreCorrectEl = document.querySelector('#scoreCorrect')
     app.checkIconEl = document.querySelector('.fa-circle-check')
     app.xIconEl = document.querySelector('.fa-circle-xmark')
+    app.posterContainer = document.querySelector('.posterReveal')
     // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
     
     if(!app.questionSubmitted){
@@ -168,7 +192,7 @@ app.displayMovieInfo = (fourMoviesArray) => {
       // Grey out the submit button
       app.submitButtonEl.classList.toggle('grayedOut')
       app.nextButtonEl.classList.toggle('grayedOut')
-      // Want to prevent the hover/focus state on the button but will need to revisit.
+      app.getPoster(fourMoviesArray[randomMovieIndex].posterPath)
       if(app.selectedOption.value === fourMoviesArray[randomMovieIndex].name){
         
         // If the user chooses the correct option. Up the user's score by 1.
@@ -194,7 +218,11 @@ app.displayMovieInfo = (fourMoviesArray) => {
     app.getMovies();
   })
 }
-
+// 
+app.getPoster = (posterPath) => {
+    let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`
+    
+}
 app.refreshGameplayPage = () => {
     app.questionSubmitted = false;
     app.searchPage++
@@ -215,6 +243,7 @@ app.refreshGameplayPage = () => {
 }
 
 app.init = () => {
+  app.getConfig();
   app.getMovies();
 }
 
