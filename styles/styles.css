@@ -570,6 +570,11 @@ main {
   transition: 0.3s;
 }
 
+.grayedOut {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 .gamePlay .questionScore {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -600,6 +605,8 @@ main {
 .gamePlay form .buttonsContainer .submitButtons {
   background: white;
   padding: 5px 15px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .gamePlay ul {

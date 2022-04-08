@@ -130,6 +130,12 @@ main {
   }
 }
 
+// creating a class for when buttons are inactive
+.grayedOut {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 .gamePlay {
   .questionScore {
     display: flex;
@@ -149,7 +155,9 @@ main {
       .submitButtons {
         background: white;
         padding: 5px 15px;
+        transition: 0.3s;
       }
+
     }
   }
 }

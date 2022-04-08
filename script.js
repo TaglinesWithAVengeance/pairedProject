@@ -35,16 +35,18 @@ app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 app.searchPage = 1 // Starts with the page of the most popular movies.
 app.url = new URL('https://api.themoviedb.org/3/discover/movie');
 
-app.url.search = new URLSearchParams({
-  api_key: app.apiKey,
-  language: 'en-US',
-  certification_country: 'usa',
-  sort_by: 'vote_count.desc', //getting more popular searches
-  page: app.searchPage.toString(), // can change this with each call to randomize further, maybe pages 1-20 or 50???
-  with_original_language: 'en'
-})
 
 app.getMovies = async () => {
+  app.url.search = new URLSearchParams({
+    api_key: app.apiKey,
+    language: 'en-US',
+    certification_country: 'usa',
+    sort_by: 'vote_count.desc', //getting more popular searches
+    page: app.searchPage.toString(), // can change this with each call to randomize further, maybe pages 1-20 or 50???
+    with_original_language: 'en'
+  })
+  console.log(app.url.search);
+  console.log(app.searchPage)
   const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
 
@@ -163,7 +165,8 @@ app.displayMovieInfo = (fourMoviesArray) => {
       // Change app.questionSubmitted to true
       app.questionSubmitted = true;
       // Grey out the submit button
-      submitButtonEl.style["opacity"] = 0.3;
+      submitButtonEl.classList.toggle('grayedOut')
+      nextButtonEl.classList.toggle('grayedOut')
       // Want to prevent the hover/focus state on the button but will need to revisit.
       if(selectedOption.value === fourMoviesArray[randomMovieIndex].name){
         
@@ -192,9 +195,6 @@ app.displayMovieInfo = (fourMoviesArray) => {
     event.preventDefault();
     // Might want to create a refresh the page function to clear out the current contents.
     app.searchPage++
-    console.log(app.searchPage)
-    console.log(app.url.search);
-    // stuck on page 1...
     questionNumber++;
     const questionCountEl = document.querySelector('#questionCount')
     questionCountEl.innerText = questionNumber
