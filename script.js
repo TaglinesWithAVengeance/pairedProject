@@ -105,6 +105,12 @@ app.removeFalsies = (movieList) => {
     if(!movie.name){
       const indexToSplice = movieList.indexOf(movie);
       movieList.splice(indexToSplice, 1);
+    }else if(!movie.tagline){
+      const indexToSplice = movieList.indexOf(movie);
+      movieList.splice(indexToSplice, 1);
+    }else if(!movie.posterPath){
+      const indexToSplice = movieList.indexOf(movie);
+      movieList.splice(indexToSplice, 1);
     }
   });
   app.selectRandomMovies(movieList);
