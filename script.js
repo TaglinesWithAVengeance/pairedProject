@@ -24,20 +24,15 @@
 // init function and call
 
 
-//genres with 10+: drama , action , adventure , comedy , horror , anime 
-// sci-fi (only 5), romance (only 9), 
-
 // Creating our namespace
 const app = {};
 
-//Storing the objects for the game round
-app.movieList = []; 
-for(i=0; i < 20; i++){
-  app.movieList.push({})
-}
+app.userScore = 0;
+app.questionNumber = 1;
 
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
-app.searchPage = 1 // Starts with the first page of the most popular movies.
+app.searchPage = 1; // Starts with the first page of the most popular movies.
+console.log("searchpage start", app.searchPage);
 
 // Get the latest URL configuration data from the API
 app.getConfig = async () => {
@@ -52,31 +47,32 @@ app.getConfig = async () => {
 }
 // Retrieve the movie data
 app.getMovies = async () => {
+  app.movieList = []; 
+  for(i=0; i < 20; i++){
+    app.movieList.push({})
+  }
   app.url = new URL('https://api.themoviedb.org/3/discover/movie');
   app.url.search = new URLSearchParams({
     api_key: app.apiKey,
     language: 'en-US',
     certification_country: 'usa',
-    sort_by: 'vote_count.desc', //getting more popular searches
-    page: app.searchPage.toString(), // can change this with each call to randomize further, maybe pages 1-20 or 50???
+    sort_by: 'vote_count.desc', //getting more well-known movies
+    page: app.searchPage.toString(),
     with_original_language: 'en'
   })
   const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
-  console.log(movieData);
-  return movieData
+  // return movieData;
+  app.pullIDS(movieData);
+  // app.calledData(movieData);
 }
 
-app.calledData = app.getMovies();
-
-
-app.calledData.then((movieObj) => {
+app.pullIDS = (movieObj) => {
   const idArray = []
     while(idArray.length < 20){
       for(let i = 0; i < 20; i++){
         idArray.push(movieObj['results'][i].id);
       }
-      console.log(idArray)
     }
 
     app.promiseArray = idArray.map(idNumber => {
@@ -95,10 +91,10 @@ app.calledData.then((movieObj) => {
     Promise.all(app.promiseArray).then(eachMovie => {
       return app.changeTheData(eachMovie);
     })
-})
+}
 
 app.changeTheData = (movie) => {
-  for(let i = 0; i < 20; i++){ //one problem may be empty taglines causing infinite loop. Could reduce to 10 movies to choose from? 
+  for(let i = 0; i < 20; i++){ 
     if(movie[i].tagline){
       const { title, tagline, poster_path } = movie[i];
       app.movieList[i].name = title;
@@ -107,10 +103,10 @@ app.changeTheData = (movie) => {
     }
   }
   app.selectRandomMovies(app.movieList);
+  console.log("movieList of 20", app.movieList); //this is created twice the second time around
 }
 
 // Choose 4 random movies from the movieList array
-
 app.selectRandomMovies = (listOfMovies) => {
   // Choose a random movie from the list of 20 movies
   // Making sure it is not the same index twice
@@ -148,11 +144,15 @@ app.displayMovieInfo = (fourMoviesArray) => {
   cOption.labels[0].innerText = ""
   dOption.labels[0].innerText = ""
 
-  // Choose a random number between 1 and 4 (movies)
-  let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length)
-  // Assign one movie to be the correct one.
-  fourMoviesArray[randomMovieIndex].correctMovie = true;
-  legendEl.innerText = `"${fourMoviesArray[randomMovieIndex].tagline}"`
+  // Choose a random number between 0 and 3 for index
+  let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length);
+
+  //set the correct movie 
+  const correctMovieInfo = fourMoviesArray[randomMovieIndex]; //updates
+  console.log("correct movie declaration", correctMovieInfo); 
+  correctMovieInfo.correctMovie = true; //testing if needed or not
+
+  legendEl.innerText = `"${correctMovieInfo.tagline}"` //updates
   aOption.value = fourMoviesArray[0].name;
   aOption.labels[0].innerText = fourMoviesArray[0].name
   bOption.value = fourMoviesArray[1].name;
@@ -162,90 +162,106 @@ app.displayMovieInfo = (fourMoviesArray) => {
   dOption.value = fourMoviesArray[3].name;
   dOption.labels[0].innerText = fourMoviesArray[3].name
 
-  app.submitButtonEl = document.querySelector("#submit")
-  app.nextButtonEl = document.querySelector("#next")
-  app.scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber')
-  app.userScore = 0
-  app.questionNumber = 1
-  app.questionSubmitted = false
+  app.scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber');
+  // app.questionNumber = 1;
+  app.questionSubmitted = false;
 
-  // Add an event listener to the submit button to check the user's answer.
-  app.submitButtonEl.addEventListener('click', (event) => {
-    event.preventDefault();
-    // Query the form elements
-    app.formEl = document.querySelector('form');
-    app.radioButtons = document.querySelectorAll('input[type="radio"]')
-    app.selectedOption = app.formEl.querySelector('input[type="radio"]:checked')
-    app.scoreCorrectEl = document.querySelector('#scoreCorrect')
-    app.checkIconEl = document.querySelector('.fa-circle-check')
-    app.xIconEl = document.querySelector('.fa-circle-xmark')
-    app.posterContainer = document.querySelector('.posterReveal')
-    app.posterContainer.innerHTML = "";
-    // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
-    
-    if(!app.questionSubmitted){
-      // Prevent the user from selecting another option for this question.
-      for(i = 0; i < 4; i++){
-          app.radioButtons[i].disabled = true;
+}
+
+app.submitButtonEl = document.querySelector("#submit");
+app.nextButtonEl = document.querySelector("#next");
+// Add an event listener to the submit button to check the user's answer.
+app.submitButtonEl.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  console.log("submit click registered");
+
+  // Query the form elements
+  app.formEl = document.querySelector('form');
+  app.radioButtons = document.querySelectorAll('input[type="radio"]')
+  app.selectedOption = app.formEl.querySelector('input[type="radio"]:checked')
+  app.scoreCorrectEl = document.querySelector('#scoreCorrect')
+  app.checkIconEl = document.querySelector('.fa-circle-check')
+  app.xIconEl = document.querySelector('.fa-circle-xmark')
+  app.posterContainer = document.querySelector('.posterReveal')
+  // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
+  
+  if(!app.questionSubmitted){
+    const findCorrectMovie = () => {
+      for(let i = 0; i < app.multipleChoiceArray.length; i++){
+        if(app.multipleChoiceArray[i].correctMovie){
+          return app.multipleChoiceArray[i];
         }
-      // Change app.questionSubmitted to true
-      app.questionSubmitted = true;
-      // Grey out the submit button
-      app.submitButtonEl.classList.toggle('grayedOut')
-      app.nextButtonEl.classList.toggle('grayedOut')
-      app.getPoster(fourMoviesArray[randomMovieIndex].posterPath, fourMoviesArray[randomMovieIndex].name)
-      if(app.selectedOption.value === fourMoviesArray[randomMovieIndex].name){
-        
-        // If the user chooses the correct option. Up the user's score by 1.
-        app.userScore++
-        app.scoreCorrectEl.innerText = app.userScore;
-        // Increase the questions answered by 1.
-        
-        app.scoreQuestionNumberEl.innerText = app.questionNumber;
-        // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
-        app.checkIconEl.classList.toggle('correct')
-        app.xIconEl.classList.toggle('grayedOut')
-      }else {
-        // If the user chooses the incorrect option: change the x icon color to red.
-        app.xIconEl.classList.toggle('incorrect')
-        app.checkIconEl.classList.toggle('grayedOut')
-        // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
       }
     }
-  })
-  app.nextButtonEl.addEventListener("click", (event) => {
-    event.preventDefault();
-    app.refreshGameplayPage();
-    app.getMovies();
-  })
-}
-// 
+
+  const correctMovieOutput = findCorrectMovie();
+
+    // Prevent the user from selecting another option for this question.
+    for(i = 0; i < 4; i++){
+        app.radioButtons[i].disabled = true;
+      }
+    // Change app.questionSubmitted to true
+    app.questionSubmitted = true;
+    // Grey out the submit button
+    app.submitButtonEl.classList.toggle('grayedOut');
+    app.nextButtonEl.classList.toggle('grayedOut');
+    app.getPoster(correctMovieOutput.posterPath);
+    if(app.selectedOption.value === correctMovieOutput.name){
+      // If the user chooses the correct option. Up the user's score by 1.
+      app.userScore++;
+      app.scoreCorrectEl.innerText = app.userScore;
+
+      //update the question number and score "out of" number
+      app.scoreQuestionNumberEl.innerText = app.questionNumber;
+      
+      // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
+      app.checkIconEl.classList.toggle('correct');
+      app.xIconEl.classList.toggle('grayedOut');
+    } else {
+      // If the user chooses the incorrect option: change the x icon color to red.
+      app.xIconEl.classList.toggle('incorrect');
+      app.checkIconEl.classList.toggle('grayedOut');
+      // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
+    }
+  }
+})
+
+app.nextButtonEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  app.refreshGameplayPage();
+  app.getConfig(); //added for good measure, but no changes seen
+  app.getMovies();
+  // app.init();
+  console.log("next click registered");
+})
+
 app.getPoster = (posterPath, movieTitle) => {
     let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
     app.posterImage = document.createElement('img');
     app.posterImage.src = posterUrl;
     app.posterImage.alt = `Movie poster for ${movieTitle}`;
     app.posterContainer.appendChild(app.posterImage);
-    // app.posterContainer.innerHTML = app.posterImage;
 }
+
 app.refreshGameplayPage = () => {
-    app.questionSubmitted = false;
-    app.searchPage++
-    app.questionNumber++;
-    app.posterContainer.innerHTML = `<p>?</p>`
-    app.submitButtonEl.classList.toggle('grayedOut')
-    app.nextButtonEl.classList.toggle('grayedOut')
-    app.checkIconEl.classList.remove('grayedOut')
-    app.checkIconEl.classList.remove('correct')
-    app.xIconEl.classList.remove('grayedOut')
-    app.xIconEl.classList.remove('incorrect')
-    app.movieList = [];
-    for(i = 0; i < 4; i++){
-      app.radioButtons[i].disabled = false;
-    }
-    app.questionCountEl = document.querySelector('#questionCount')
-    app.questionCountEl.innerText = app.questionNumber
-    app.scoreQuestionNumberEl.innerText = app.questionNumber
+  app.questionSubmitted = false;
+  app.searchPage++;
+  console.log("searchpage refresh", app.searchPage);
+  app.questionNumber++;
+  app.submitButtonEl.classList.toggle('grayedOut');
+  app.nextButtonEl.classList.toggle('grayedOut');
+  app.checkIconEl.classList.remove('grayedOut');
+  app.checkIconEl.classList.remove('correct');
+  app.xIconEl.classList.remove('grayedOut');
+  app.xIconEl.classList.remove('incorrect');
+  for(i = 0; i < 4; i++){
+    app.radioButtons[i].disabled = false;  app.submitButtonEl = document.querySelector("#submit");
+    app.nextButtonEl = document.querySelector("#next");
+  }
+  app.questionCountEl = document.querySelector('#questionCount');
+  app.questionCountEl.innerText = app.questionNumber;
+  app.scoreQuestionNumberEl.innerText = app.questionNumber;
 }
 
 app.init = () => {
