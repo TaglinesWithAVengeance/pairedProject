@@ -57,13 +57,13 @@
       <div class="textContainer">
         <div class="questionScore">
           <h2>Question <span id="questionCount">1</span>:</h2>
-          <p class="score">Score: <span>0/5</span></p>
+          <p class="score">Score: <span id="scoreCorrect">0</span>/<span id="scoreQuestionNumber">1</span></p>
         </div><!-- .questionScore END -->
 
         <h2>What movie has the tagline...?</h2>
         
         <form action="#">
-          <legend>"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium!"</legend>
+          <legend></legend> <!-- Movie tagline will be generated here-->
 
           <ul>
             <li>
@@ -88,8 +88,8 @@
           </ul>
 
           <div class="buttonsContainer">
-            <button class="submitButtons" type="submit">Submit</button>
-            <button class="submitButtons" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
+            <button class="submitButtons submit" id="submit" type="submit">Submit</button>
+            <button class="submitButtons next grayedOut" id="next" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
           </div><!-- .buttonsContainer END -->
         </form>
       </div><!-- .textContainer END -->
