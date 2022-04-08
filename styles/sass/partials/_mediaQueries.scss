@@ -55,12 +55,12 @@
           position: absolute;
           top: 0;
           max-width: 220px;
-          width: 80%;
-          height: 80%;
+          width: 90%;
+          height: 90%;
         }
         .iconContainer {
           position: absolute;
-          bottom: 0;
+          bottom: -25px;
           &:first-of-type {
             left: 100px;
           }
