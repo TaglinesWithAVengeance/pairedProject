@@ -28,9 +28,11 @@
 const app = {};
 
 app.userScore = 0;
+app.questionNumber = 1;
 
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
-app.searchPage = 1 // Starts with the first page of the most popular movies.
+app.searchPage = 1; // Starts with the first page of the most popular movies.
+console.log("searchpage start", app.searchPage);
 
 // Get the latest URL configuration data from the API
 app.getConfig = async () => {
@@ -160,75 +162,79 @@ app.displayMovieInfo = (fourMoviesArray) => {
   dOption.value = fourMoviesArray[3].name;
   dOption.labels[0].innerText = fourMoviesArray[3].name
 
-  app.submitButtonEl = document.querySelector("#submit");
-  app.nextButtonEl = document.querySelector("#next");
   app.scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber');
-  app.questionNumber = 1;
+  // app.questionNumber = 1;
   app.questionSubmitted = false;
 
-  // Add an event listener to the submit button to check the user's answer.
-  app.submitButtonEl.addEventListener('click', (event) => {
-    event.preventDefault();
+}
 
-    console.log("submit click registered");
+app.submitButtonEl = document.querySelector("#submit");
+app.nextButtonEl = document.querySelector("#next");
+// Add an event listener to the submit button to check the user's answer.
+app.submitButtonEl.addEventListener('click', (event) => {
+  event.preventDefault();
 
-    // Query the form elements
-    app.formEl = document.querySelector('form');
-    app.radioButtons = document.querySelectorAll('input[type="radio"]')
-    app.selectedOption = app.formEl.querySelector('input[type="radio"]:checked')
-    app.scoreCorrectEl = document.querySelector('#scoreCorrect')
-    app.checkIconEl = document.querySelector('.fa-circle-check')
-    app.xIconEl = document.querySelector('.fa-circle-xmark')
-    app.posterContainer = document.querySelector('.posterReveal')
-    // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
-    
-    if(!app.questionSubmitted){
-      const findCorrectMovie = () => {
-        for(let i = 0; i < app.multipleChoiceArray.length; i++){
-          if(app.multipleChoiceArray[i].correctMovie){
-            return app.multipleChoiceArray[i];
-          }
+  console.log("submit click registered");
+
+  // Query the form elements
+  app.formEl = document.querySelector('form');
+  app.radioButtons = document.querySelectorAll('input[type="radio"]')
+  app.selectedOption = app.formEl.querySelector('input[type="radio"]:checked')
+  app.scoreCorrectEl = document.querySelector('#scoreCorrect')
+  app.checkIconEl = document.querySelector('.fa-circle-check')
+  app.xIconEl = document.querySelector('.fa-circle-xmark')
+  app.posterContainer = document.querySelector('.posterReveal')
+  // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
+  
+  if(!app.questionSubmitted){
+    const findCorrectMovie = () => {
+      for(let i = 0; i < app.multipleChoiceArray.length; i++){
+        if(app.multipleChoiceArray[i].correctMovie){
+          return app.multipleChoiceArray[i];
         }
-      }
-
-    const correctMovieOutput = findCorrectMovie();
-
-      // Prevent the user from selecting another option for this question.
-      for(i = 0; i < 4; i++){
-          app.radioButtons[i].disabled = true;
-        }
-      // Change app.questionSubmitted to true
-      app.questionSubmitted = true;
-      // Grey out the submit button
-      app.submitButtonEl.classList.toggle('grayedOut');
-      app.nextButtonEl.classList.toggle('grayedOut');
-      app.getPoster(correctMovieOutput.posterPath);
-      if(app.selectedOption.value === correctMovieOutput.name){
-        // If the user chooses the correct option. Up the user's score by 1.
-        app.userScore++;
-        app.scoreCorrectEl.innerText = app.userScore;
-        
-        // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
-        app.checkIconEl.classList.toggle('correct');
-        app.xIconEl.classList.toggle('grayedOut');
-      } else {
-        // If the user chooses the incorrect option: change the x icon color to red.
-        app.xIconEl.classList.toggle('incorrect');
-        app.checkIconEl.classList.toggle('grayedOut');
-        // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
       }
     }
-  })
 
-  app.nextButtonEl.addEventListener("click", (event) => {
-    event.preventDefault();
-    app.refreshGameplayPage();
-    app.getConfig(); //added for good measure, but no changes seen
-    app.getMovies();
-    app.init();
-    console.log("next click registered");
-  })
-}
+  const correctMovieOutput = findCorrectMovie();
+
+    // Prevent the user from selecting another option for this question.
+    for(i = 0; i < 4; i++){
+        app.radioButtons[i].disabled = true;
+      }
+    // Change app.questionSubmitted to true
+    app.questionSubmitted = true;
+    // Grey out the submit button
+    app.submitButtonEl.classList.toggle('grayedOut');
+    app.nextButtonEl.classList.toggle('grayedOut');
+    app.getPoster(correctMovieOutput.posterPath);
+    if(app.selectedOption.value === correctMovieOutput.name){
+      // If the user chooses the correct option. Up the user's score by 1.
+      app.userScore++;
+      app.scoreCorrectEl.innerText = app.userScore;
+
+      //update the question number and score "out of" number
+      app.scoreQuestionNumberEl.innerText = app.questionNumber;
+      
+      // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
+      app.checkIconEl.classList.toggle('correct');
+      app.xIconEl.classList.toggle('grayedOut');
+    } else {
+      // If the user chooses the incorrect option: change the x icon color to red.
+      app.xIconEl.classList.toggle('incorrect');
+      app.checkIconEl.classList.toggle('grayedOut');
+      // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
+    }
+  }
+})
+
+app.nextButtonEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  app.refreshGameplayPage();
+  app.getConfig(); //added for good measure, but no changes seen
+  app.getMovies();
+  // app.init();
+  console.log("next click registered");
+})
 
 app.getPoster = (posterPath) => {
     let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`
@@ -237,6 +243,7 @@ app.getPoster = (posterPath) => {
 app.refreshGameplayPage = () => {
   app.questionSubmitted = false;
   app.searchPage++;
+  console.log("searchpage refresh", app.searchPage);
   app.questionNumber++;
   app.submitButtonEl.classList.toggle('grayedOut');
   app.nextButtonEl.classList.toggle('grayedOut');
@@ -244,9 +251,9 @@ app.refreshGameplayPage = () => {
   app.checkIconEl.classList.remove('correct');
   app.xIconEl.classList.remove('grayedOut');
   app.xIconEl.classList.remove('incorrect');
-  app.movieList = [];
   for(i = 0; i < 4; i++){
-    app.radioButtons[i].disabled = false;
+    app.radioButtons[i].disabled = false;  app.submitButtonEl = document.querySelector("#submit");
+    app.nextButtonEl = document.querySelector("#next");
   }
   app.questionCountEl = document.querySelector('#questionCount');
   app.questionCountEl.innerText = app.questionNumber;
