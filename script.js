@@ -255,8 +255,8 @@ app.refreshGameplayPage = () => {
   app.xIconEl.classList.remove('grayedOut');
   app.xIconEl.classList.remove('incorrect');
   for(i = 0; i < 4; i++){
-    app.radioButtons[i].disabled = false;  app.submitButtonEl = document.querySelector("#submit");
-    app.nextButtonEl = document.querySelector("#next");
+    app.radioButtons[i].disabled = false;  
+    app.radioButtons[i].checked = false;
   }
   app.questionCountEl = document.querySelector('#questionCount');
   app.questionCountEl.innerText = app.questionNumber;
