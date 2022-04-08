@@ -237,11 +237,12 @@ app.nextButtonEl.addEventListener("click", (event) => {
 })
 
 app.getPoster = (posterPath, movieTitle) => {
-    let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
-    app.posterImage = document.createElement('img');
-    app.posterImage.src = posterUrl;
-    app.posterImage.alt = `Movie poster for ${movieTitle}`;
-    app.posterContainer.appendChild(app.posterImage);
+  let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
+  app.posterImage = document.createElement('img');
+  app.posterImage.src = posterUrl;
+  app.posterImage.alt = `Movie poster for ${movieTitle}`;
+  app.posterContainer.innerHTML = "";
+  app.posterContainer.appendChild(app.posterImage);
 }
 
 app.refreshGameplayPage = () => {
