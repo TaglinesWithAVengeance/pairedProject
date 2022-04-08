@@ -559,8 +559,8 @@ main {
   max-width: 170px;
   background: #392F5A;
   border: 10px solid #9DD9D2;
-  -webkit-transition: none;
-  transition: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 .posterDisplay .posterReveal p {
   color: #FF8811;
@@ -580,11 +580,13 @@ main {
 }
 .posterDisplay .iconContainer .incorrect {
   background-color: red;
-  font-size: 5rem;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
 }
 .posterDisplay .iconContainer .correct {
   background-color: green;
-  font-size: 5rem;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
 }
 
 .grayedOut {
