@@ -27,16 +27,21 @@
 //genres with 10+: drama , action , adventure , comedy , horror , anime 
 // sci-fi (only 5), romance (only 9), 
 
-
+// Creating our namespace
 const app = {};
-app.movieList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]; //storing the objects for the game round
+
+//Storing the objects for the game round
+app.movieList = []; 
+for(i=0; i < 20; i++){
+  app.movieList.push({})
+}
 
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
-app.searchPage = 1 // Starts with the page of the most popular movies.
-app.url = new URL('https://api.themoviedb.org/3/discover/movie');
+app.searchPage = 1 // Starts with the first page of the most popular movies.
 
 
 app.getMovies = async () => {
+  app.url = new URL('https://api.themoviedb.org/3/discover/movie');
   app.url.search = new URLSearchParams({
     api_key: app.apiKey,
     language: 'en-US',
@@ -45,8 +50,6 @@ app.getMovies = async () => {
     page: app.searchPage.toString(), // can change this with each call to randomize further, maybe pages 1-20 or 50???
     with_original_language: 'en'
   })
-  console.log(app.url.search);
-  console.log(app.searchPage)
   const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
 
@@ -121,14 +124,12 @@ app.displayMovieInfo = (fourMoviesArray) => {
   const bOption = document.querySelector('#bOption')
   const cOption = document.querySelector('#cOption')
   const dOption = document.querySelector('#dOption')
-  // console.log(formEl); //doesn't include the legend
   const legendEl = document.querySelector('legend');
   // Choose a random number between 1 and 4 (movies)
   let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length)
-  // assign one movie to be the correct one. Not sure if we actually need this property actually...
+  // Assign one movie to be the correct one.
   fourMoviesArray[randomMovieIndex].correctMovie = true;
   legendEl.innerText = `"${fourMoviesArray[randomMovieIndex].tagline}"`
-  // Not sure if there is a way to do the following with a loop?
   aOption.value = fourMoviesArray[0].name;
   aOption.labels[0].innerText = fourMoviesArray[0].name
   bOption.value = fourMoviesArray[1].name;
@@ -138,72 +139,80 @@ app.displayMovieInfo = (fourMoviesArray) => {
   dOption.value = fourMoviesArray[3].name;
   dOption.labels[0].innerText = fourMoviesArray[3].name
 
-  const submitButtonEl = document.querySelector("#submit")
-  const nextButtonEl = document.querySelector("#next")
-  const scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber')
-  let userScore = 0
-  let questionNumber = 1
+  app.submitButtonEl = document.querySelector("#submit")
+  app.nextButtonEl = document.querySelector("#next")
+  app.scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber')
+  app.userScore = 0
+  app.questionNumber = 1
   app.questionSubmitted = false
 
   // Add an event listener to the submit button to check the user's answer.
-  submitButtonEl.addEventListener('click', (event) => {
+  app.submitButtonEl.addEventListener('click', (event) => {
     event.preventDefault();
     // Query the form elements
-    const formEl = document.querySelector('form');
-    const radioButtons = document.querySelectorAll('input[type="radio"]')
-    const selectedOption = formEl.querySelector('input[type="radio"]:checked')
-    const scoreCorrectEl = document.querySelector('#scoreCorrect')
-    const checkIconEl = document.querySelector('.fa-circle-check')
-    const xIconEl = document.querySelector('.fa-circle-xmark')
+    app.formEl = document.querySelector('form');
+    app.radioButtons = document.querySelectorAll('input[type="radio"]')
+    app.selectedOption = app.formEl.querySelector('input[type="radio"]:checked')
+    app.scoreCorrectEl = document.querySelector('#scoreCorrect')
+    app.checkIconEl = document.querySelector('.fa-circle-check')
+    app.xIconEl = document.querySelector('.fa-circle-xmark')
     // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
     
     if(!app.questionSubmitted){
       // Prevent the user from selecting another option for this question.
       for(i = 0; i < 4; i++){
-          radioButtons[i].disabled = true;
+          app.radioButtons[i].disabled = true;
         }
       // Change app.questionSubmitted to true
       app.questionSubmitted = true;
       // Grey out the submit button
-      submitButtonEl.classList.toggle('grayedOut')
-      nextButtonEl.classList.toggle('grayedOut')
+      app.submitButtonEl.classList.toggle('grayedOut')
+      app.nextButtonEl.classList.toggle('grayedOut')
       // Want to prevent the hover/focus state on the button but will need to revisit.
-      if(selectedOption.value === fourMoviesArray[randomMovieIndex].name){
+      if(app.selectedOption.value === fourMoviesArray[randomMovieIndex].name){
         
         // If the user chooses the correct option. Up the user's score by 1.
-        userScore++
-        scoreCorrectEl.innerText = userScore;
+        app.userScore++
+        app.scoreCorrectEl.innerText = app.userScore;
         // Increase the questions answered by 1.
         
-        scoreQuestionNumberEl.innerText = questionNumber;
+        app.scoreQuestionNumberEl.innerText = app.questionNumber;
         // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
-        checkIconEl.style["background-color"] = "green";
-        checkIconEl.style["color"] = "black";
-        checkIconEl.style["font-size"] = "5rem"
-        xIconEl.style["opacity"] = 0.3;
+        app.checkIconEl.classList.toggle('correct')
+        app.xIconEl.classList.toggle('grayedOut')
       }else {
         // If the user chooses the incorrect option: change the x icon color to red.
-        xIconEl.style["background-color"] = "red";
-        xIconEl.style["font-size"] = "5rem"
-        checkIconEl.style["opacity"] = 0.3;
+        app.xIconEl.classList.toggle('incorrect')
+        app.checkIconEl.classList.toggle('grayedOut')
         // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
       }
-    } else {
     }
   })
-  nextButtonEl.addEventListener("click", (event) => {
+  app.nextButtonEl.addEventListener("click", (event) => {
     event.preventDefault();
-    // Might want to create a refresh the page function to clear out the current contents.
-    app.searchPage++
-    questionNumber++;
-    const questionCountEl = document.querySelector('#questionCount')
-    questionCountEl.innerText = questionNumber
-    scoreQuestionNumberEl.innerText = questionNumber
+    app.refreshGameplayPage();
     app.getMovies();
-    console.log(app.movieList)
   })
 }
 
+app.refreshGameplayPage = () => {
+    app.questionSubmitted = false;
+    app.searchPage++
+    app.questionNumber++;
+    app.submitButtonEl.classList.toggle('grayedOut')
+    app.nextButtonEl.classList.toggle('grayedOut')
+    app.checkIconEl.classList.remove('grayedOut')
+    app.checkIconEl.classList.remove('correct')
+    app.xIconEl.classList.remove('grayedOut')
+    app.xIconEl.classList.remove('incorrect')
+    app.movieList = [];
+    for(i = 0; i < 4; i++){
+      app.radioButtons[i].disabled = false;
+    }
+    app.questionCountEl = document.querySelector('#questionCount')
+    app.questionCountEl.innerText = app.questionNumber
+    app.scoreQuestionNumberEl.innerText = app.questionNumber
+}
 
 app.init = () => {
   app.getMovies();

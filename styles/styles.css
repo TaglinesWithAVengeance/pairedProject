@@ -569,6 +569,14 @@ main {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
+.posterDisplay .iconContainer .incorrect {
+  background-color: red;
+  font-size: 5rem;
+}
+.posterDisplay .iconContainer .correct {
+  background-color: green;
+  font-size: 5rem;
+}
 
 .grayedOut {
   opacity: 0.3;
