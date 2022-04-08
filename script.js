@@ -58,7 +58,6 @@ app.getMovies = async () => {
   })
   const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
-  console.log("searchpage on call", app.searchPage);
   app.pullIDS(movieData);
 }
 
@@ -232,25 +231,16 @@ app.getPoster = (posterPath, movieTitle) => {
   app.posterImage.alt = `Movie poster for ${movieTitle}`;
   app.posterContainer.innerHTML = "";
   app.posterContainer.appendChild(app.posterImage);
-  console.log(app.posterContainer);
 }
 
 app.refreshGameplayPage = () => {
   app.questionSubmitted = false;
-  // if(app.searchPage === 3){
-  //   app.searchPage === 1;
-  //   console.log("searchpage in if statement", app.searchPage);
-  // }else{
-  //   app.searchPage++;
-  // }
-  app.searchPage++;
-
-  app.posterImageHidden = document.createElement('p');
-  app.posterImageHidden.innerHTML = '?';
-  app.posterContainer.innerHTML = "";
-  app.posterContainer.appendChild(app.posterImageHidden);
-
-  console.log("searchpage on refresh", app.searchPage);
+  if(app.searchPage === 100){
+    app.searchPage = 1;
+  }else{
+    app.searchPage++;
+  }
+  app.posterContainer.innerHTML = `<p>?</p>`
   app.questionNumber++;
   app.submitButtonEl.classList.toggle('grayedOut');
   app.nextButtonEl.classList.toggle('grayedOut');
