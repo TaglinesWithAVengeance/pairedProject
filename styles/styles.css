@@ -547,11 +547,20 @@ main {
           align-items: center;
   padding: 10px 0;
 }
+.posterDisplay img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .posterDisplay .posterReveal {
   width: 50%;
   max-width: 170px;
   background: #392F5A;
   border: 10px solid #9DD9D2;
+  -webkit-transition: none;
+  transition: none;
 }
 .posterDisplay .posterReveal p {
   color: #FF8811;

@@ -67,7 +67,7 @@ app.getMovies = async () => {
   return movieData
 }
 
-app.calledData = app.getMovies(movieData);
+app.calledData = app.getMovies();
 
 
 app.calledData.then((movieObj) => {
@@ -180,6 +180,7 @@ app.displayMovieInfo = (fourMoviesArray) => {
     app.checkIconEl = document.querySelector('.fa-circle-check')
     app.xIconEl = document.querySelector('.fa-circle-xmark')
     app.posterContainer = document.querySelector('.posterReveal')
+    app.posterContainer.innerHTML = "";
     // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
     
     if(!app.questionSubmitted){
@@ -192,7 +193,7 @@ app.displayMovieInfo = (fourMoviesArray) => {
       // Grey out the submit button
       app.submitButtonEl.classList.toggle('grayedOut')
       app.nextButtonEl.classList.toggle('grayedOut')
-      app.getPoster(fourMoviesArray[randomMovieIndex].posterPath)
+      app.getPoster(fourMoviesArray[randomMovieIndex].posterPath, fourMoviesArray[randomMovieIndex].name)
       if(app.selectedOption.value === fourMoviesArray[randomMovieIndex].name){
         
         // If the user chooses the correct option. Up the user's score by 1.
@@ -219,14 +220,19 @@ app.displayMovieInfo = (fourMoviesArray) => {
   })
 }
 // 
-app.getPoster = (posterPath) => {
-    let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`
-    
+app.getPoster = (posterPath, movieTitle) => {
+    let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
+    app.posterImage = document.createElement('img');
+    app.posterImage.src = posterUrl;
+    app.posterImage.alt = `Movie poster for ${movieTitle}`;
+    app.posterContainer.appendChild(app.posterImage);
+    // app.posterContainer.innerHTML = app.posterImage;
 }
 app.refreshGameplayPage = () => {
     app.questionSubmitted = false;
     app.searchPage++
     app.questionNumber++;
+    app.posterContainer.innerHTML = `<p>?</p>`
     app.submitButtonEl.classList.toggle('grayedOut')
     app.nextButtonEl.classList.toggle('grayedOut')
     app.checkIconEl.classList.remove('grayedOut')
