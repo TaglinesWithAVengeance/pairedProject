@@ -120,7 +120,7 @@ main {
     height: 225px;
     background: $purple;
     border: 10px solid $seafoam;
-    transition: none;
+    transition: 0.3s;
     p {
       color: $orange;
       font-family: $monster;
@@ -139,11 +139,11 @@ main {
     // Classes for the x and check when answer is submitted.
     .incorrect {
       background-color: red;
-      font-size: 5rem;
+      transform: scale(1.4)
     }
     .correct {
       background-color: green;
-      font-size: 5rem;
+      transform: scale(1.4)
     }
   }
 }

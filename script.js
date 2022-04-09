@@ -23,10 +23,15 @@
 
 // Creating our namespace
 const app = {};
-
+// Default values for user's score and question number
 app.userScore = 0;
 app.questionNumber = 1;
-
+// Query the hamburger menu and navigation elements
+app.hamburgerButton = document.querySelector('.mobileMenuIcon')
+app.hamburgerIcon = document.querySelector('.mobileMenuIcon i')
+app.navigationList = document.querySelector('.mobileNav')
+app.navigationListItem = document.querySelectorAll('.mobileNav li')
+// Storing API key
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 app.searchPage = 1; // Starts with the first page of the most popular movies.
 
@@ -230,6 +235,37 @@ app.nextButtonEl.addEventListener("click", (event) => {
   app.getMovies();
 })
 
+app.openHamburgerNav = () => {
+  app.hamburgerOpen = true;
+  // change the hamburger icon to the "x" icon
+  app.hamburgerIcon.classList.toggle('fa-xmark');
+  app.hamburgerIcon.classList.toggle('fa-bars');
+  // add the navOpen class to the nav menu list
+  app.navigationList.classList.add('navOpen');
+}
+
+app.closeHamburgerNav = () => {
+  // change the hamburger icon to the "x" icon.
+  app.hamburgerIcon.classList.toggle('fa-xmark');
+  app.hamburgerIcon.classList.toggle('fa-bars');
+  // remove the navOpen class to the nav menu list
+  app.navigationList.classList.remove('navOpen');
+  // The menu is now closed
+  app.hamburgerOpen = false
+}
+
+app.hamburgerClick = () => {
+    // When the hamburger button is clicked:
+  // If the menu is open, close it
+  if(app.hamburgerOpen){
+    app.closeHamburgerNav();
+  // If the menu is closed, open it
+  } else{
+    app.openHamburgerNav();
+  }
+}
+app.hamburgerButton.addEventListener('click', app.hamburgerClick)
+
 app.getPoster = (posterPath, movieTitle) => {
   let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
   app.posterImage = document.createElement('img');
@@ -248,6 +284,7 @@ app.refreshGameplayPage = () => {
   }
   app.posterContainer.innerHTML = `<p>?</p>`
   app.questionNumber++;
+  app.posterContainer.innerHTML = `<p>?</p>`
   app.submitButtonEl.classList.toggle('grayedOut');
   app.nextButtonEl.classList.toggle('grayedOut');
   app.checkIconEl.classList.remove('grayedOut');
@@ -264,7 +301,11 @@ app.refreshGameplayPage = () => {
 }
 
 app.init = () => {
+  // keep the hamburger menu closed at first
+  app.hamburgerOpen = false;
+  // get the latest URL configuration from the API
   app.getConfig();
+  // get the data
   app.getMovies();
 }
 
