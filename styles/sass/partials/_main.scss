@@ -2,6 +2,7 @@
 
 main {
   height: 100%;
+  background-color: $white;
 }
 .introduction {
   display: flex; // allow for flex-basis of images
@@ -42,6 +43,7 @@ main {
     a {
       padding: 10px 25px;
       background-color: white;
+      font-size: 3.1rem;
     }
   }
 }
@@ -121,12 +123,17 @@ main {
     background: $purple;
     border: 10px solid $seafoam;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     p {
       color: $orange;
       font-family: $monster;
       text-align: center;
       font-size: 10rem;
       padding: 35px 0;
+      margin-top: -10px;
     }
   }
   .iconContainer {
@@ -135,8 +142,9 @@ main {
       font-size: 3rem;
       border-radius: 50%;
       transition: 0.3s;
+      background-color: white;
     }
-    // Classes for the x and check when answer is submitted.
+    // Classes for the x and check marks when answer is submitted.
     .incorrect {
       background-color: red;
       transform: scale(1.4)

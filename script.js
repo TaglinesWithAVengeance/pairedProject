@@ -129,9 +129,9 @@ app.selectRandomMovies = (listOfMovies) => {
   const indexArray = [];
   while(indexArray.length < 4){
     const index = Math.floor(Math.random() * listOfMovies.length);
-      if(!indexArray.includes(index)){
+    if(!indexArray.includes(index)){
       indexArray.push(index);
-      }
+    }
   }
   //We now have 4 index numbers in an array
   for(i = 0; i < indexArray.length; i++) { 
