@@ -391,6 +391,12 @@ header .wrapper {
 
 .mobileContainer .mobileMenuIcon {
   padding-top: 10px;
+  position: fixed;
+  z-index: 30;
+  right: 15px;
+  top: 5px;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 .mobileContainer .mobileMenuIcon:hover, .mobileContainer .mobileMenuIcon:focus {
   color: #FF8811;
@@ -401,8 +407,37 @@ header .wrapper {
   border: 3px solid #392F5A;
   background-color: #FF8811;
   position: fixed;
-  right: -200px;
-  top: 50px;
+  left: -500px;
+  top: 0;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+.mobileContainer .navOpen {
+  border-radius: 25px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  z-index: 10;
+  opacity: 0.9;
+  background-color: #9DD9D2;
+  border: 8px solid #FF8811;
+}
+.mobileContainer .navOpen a {
+  font-size: 5rem;
 }
 
 footer {

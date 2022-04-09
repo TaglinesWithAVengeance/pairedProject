@@ -15,6 +15,11 @@ header {
 .mobileContainer {
   .mobileMenuIcon {
     padding-top: 10px;
+    position: fixed;
+    z-index: 30;
+    right: 15px;
+    top: 5px;
+    transition: 0.1s;
     &:hover,
     &:focus {
       color: $orange;
@@ -25,7 +30,27 @@ header {
     border: 3px solid $purple;
     background-color: $orange;
     position: fixed;
-    right: -200px;
-    top: 50px;
+    left: -500px;
+    top: 0;
+    transition: 0.1s;
+  }
+  .navOpen {
+    border-radius: 25px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 10;
+    opacity: 0.9;
+    background-color: $seafoam;
+    border: 8px solid $orange;
+
+    a {
+      font-size: 5rem;
+    }
   }
 }
