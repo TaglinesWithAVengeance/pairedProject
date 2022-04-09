@@ -1,10 +1,7 @@
 // API key: 81816879fd2d3541c56bc904bce4b7e3
 // example URL: https://api.themoviedb.org/3/movie/550?api_key=81816879fd2d3541c56bc904bce4b7e3
 
-// API Read Access Token - not sure if this is needed just yet
-// eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MTgxNjg3OWZkMmQzNTQxYzU2YmM5MDRiY2U0YjdlMyIsInN1YiI6IjYyNDRjYjk1Yzc0MGQ5MDA4OWYzYmU4NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Xm4RpetLzBr71Vz9jOFp5OpD29DS45Z5mIJ2rzpE1YI
-
-// ONLY RUN ON THE GAMEPLAY PAGE
+// Gameplay scripting
 // namespacing
 // get the data, a random movie (we can randomize the genre each question or have the user choose, but we need to obtain the genre to query for a movie id first)
   // name
@@ -32,7 +29,6 @@ app.questionNumber = 1;
 
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 app.searchPage = 1; // Starts with the first page of the most popular movies.
-console.log("searchpage start", app.searchPage);
 
 // Get the latest URL configuration data from the API
 app.getConfig = async () => {
@@ -62,9 +58,7 @@ app.getMovies = async () => {
   })
   const movieResponse = await fetch(app.url);
   const movieData = await movieResponse.json();
-  // return movieData;
   app.pullIDS(movieData);
-  // app.calledData(movieData);
 }
 
 app.pullIDS = (movieObj) => {
@@ -102,8 +96,24 @@ app.changeTheData = (movie) => {
       app.movieList[i].posterPath = poster_path;
     }
   }
-  app.selectRandomMovies(app.movieList);
-  console.log("movieList of 20", app.movieList); //this is created twice the second time around
+  app.removeFalsies(app.movieList);
+}
+
+//removing any falsy values
+app.removeFalsies = (movieList) => {
+  movieList.forEach(movie => {
+    if(!movie.name){
+      const indexToSplice = movieList.indexOf(movie);
+      movieList.splice(indexToSplice, 1);
+    }else if(!movie.tagline){
+      const indexToSplice = movieList.indexOf(movie);
+      movieList.splice(indexToSplice, 1);
+    }else if(!movie.posterPath){
+      const indexToSplice = movieList.indexOf(movie);
+      movieList.splice(indexToSplice, 1);
+    }
+  });
+  app.selectRandomMovies(movieList);
 }
 
 // Choose 4 random movies from the movieList array
@@ -113,7 +123,7 @@ app.selectRandomMovies = (listOfMovies) => {
   app.multipleChoiceArray = [];
   const indexArray = [];
   while(indexArray.length < 4){
-      const index = Math.floor(Math.random() * listOfMovies.length);
+    const index = Math.floor(Math.random() * listOfMovies.length);
       if(!indexArray.includes(index)){
       indexArray.push(index);
       }
@@ -128,31 +138,20 @@ app.selectRandomMovies = (listOfMovies) => {
 
 app.displayMovieInfo = (fourMoviesArray) => {
   // querying our elements to change them later
-  const aOption = document.querySelector('#aOption')
-  const bOption = document.querySelector('#bOption')
-  const cOption = document.querySelector('#cOption')
-  const dOption = document.querySelector('#dOption')
-  const legendEl = document.querySelector('legend')
-  // Clear out the previous question's values before we assign them.
-  aOption.value = ""
-  bOption.value = ""
-  cOption.value = ""
-  dOption.value = ""
-  legendEl.innerText = ""
-  aOption.labels[0].innerText = ""
-  bOption.labels[0].innerText = ""
-  cOption.labels[0].innerText = ""
-  dOption.labels[0].innerText = ""
+  const aOption = document.querySelector('#aOption');
+  const bOption = document.querySelector('#bOption');
+  const cOption = document.querySelector('#cOption');
+  const dOption = document.querySelector('#dOption');
+  const legendEl = document.querySelector('legend');
 
   // Choose a random number between 0 and 3 for index
   let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length);
 
   //set the correct movie 
-  const correctMovieInfo = fourMoviesArray[randomMovieIndex]; //updates
-  console.log("correct movie declaration", correctMovieInfo); 
-  correctMovieInfo.correctMovie = true; //testing if needed or not
+  const correctMovieInfo = fourMoviesArray[randomMovieIndex];
+  correctMovieInfo.correctMovie = true; 
 
-  legendEl.innerText = `"${correctMovieInfo.tagline}"` //updates
+  legendEl.innerText = `"${correctMovieInfo.tagline}"`
   aOption.value = fourMoviesArray[0].name;
   aOption.labels[0].innerText = fourMoviesArray[0].name
   bOption.value = fourMoviesArray[1].name;
@@ -163,7 +162,6 @@ app.displayMovieInfo = (fourMoviesArray) => {
   dOption.labels[0].innerText = fourMoviesArray[3].name
 
   app.scoreQuestionNumberEl = document.querySelector('#scoreQuestionNumber');
-  // app.questionNumber = 1;
   app.questionSubmitted = false;
 
 }
@@ -173,8 +171,6 @@ app.nextButtonEl = document.querySelector("#next");
 // Add an event listener to the submit button to check the user's answer.
 app.submitButtonEl.addEventListener('click', (event) => {
   event.preventDefault();
-
-  console.log("submit click registered");
 
   // Query the form elements
   app.formEl = document.querySelector('form');
@@ -230,25 +226,27 @@ app.submitButtonEl.addEventListener('click', (event) => {
 app.nextButtonEl.addEventListener("click", (event) => {
   event.preventDefault();
   app.refreshGameplayPage();
-  app.getConfig(); //added for good measure, but no changes seen
+  app.getConfig();
   app.getMovies();
-  // app.init();
-  console.log("next click registered");
 })
 
 app.getPoster = (posterPath, movieTitle) => {
-    let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
-    app.posterImage = document.createElement('img');
-    app.posterImage.src = posterUrl;
-    app.posterImage.alt = `Movie poster for ${movieTitle}`;
-    app.posterContainer.innerHTML = "";
-    app.posterContainer.appendChild(app.posterImage);
+  let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
+  app.posterImage = document.createElement('img');
+  app.posterImage.src = posterUrl;
+  app.posterImage.alt = `Movie poster for ${movieTitle}`;
+  app.posterContainer.innerHTML = "";
+  app.posterContainer.appendChild(app.posterImage);
 }
 
 app.refreshGameplayPage = () => {
   app.questionSubmitted = false;
-  app.searchPage++;
-  console.log("searchpage refresh", app.searchPage);
+  if(app.searchPage === 100){
+    app.searchPage = 1;
+  }else{
+    app.searchPage++;
+  }
+  app.posterContainer.innerHTML = `<p>?</p>`
   app.questionNumber++;
   app.submitButtonEl.classList.toggle('grayedOut');
   app.nextButtonEl.classList.toggle('grayedOut');
@@ -257,8 +255,8 @@ app.refreshGameplayPage = () => {
   app.xIconEl.classList.remove('grayedOut');
   app.xIconEl.classList.remove('incorrect');
   for(i = 0; i < 4; i++){
-    app.radioButtons[i].disabled = false;  app.submitButtonEl = document.querySelector("#submit");
-    app.nextButtonEl = document.querySelector("#next");
+    app.radioButtons[i].disabled = false;  
+    app.radioButtons[i].checked = false;
   }
   app.questionCountEl = document.querySelector('#questionCount');
   app.questionCountEl.innerText = app.questionNumber;

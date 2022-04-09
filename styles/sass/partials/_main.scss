@@ -116,7 +116,8 @@ main {
   }
   .posterReveal {
     width: 50%;
-    max-width:170px;
+    width: 150px;
+    height: 225px;
     background: $purple;
     border: 10px solid $seafoam;
     transition: none;

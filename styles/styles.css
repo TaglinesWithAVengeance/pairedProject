@@ -556,7 +556,8 @@ main {
 }
 .posterDisplay .posterReveal {
   width: 50%;
-  max-width: 170px;
+  width: 150px;
+  height: 225px;
   background: #392F5A;
   border: 10px solid #9DD9D2;
   -webkit-transition: none;
