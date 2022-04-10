@@ -6,7 +6,7 @@ html {
 h1 {
   font-family: $monster;
   font-size: 2.9rem; //went smaller to fit on 320px screens
-  span {
+  .vengeance {
     text-transform: uppercase;
   }
   .taglinesh1 {
@@ -17,7 +17,7 @@ h1 {
 
 h2 {
   font-family: $monster;
-  font-size: 1.9rem; // adjusted to fit on one line at 320px
+  font-size: 1.8rem; // adjusted to fit on one line at 320px
   span {
     text-transform: uppercase;
   }
@@ -29,6 +29,7 @@ h3 {
   font-size: 1.2rem;
   color: black;
   padding-top: 10px;
+  width: 88%;
 }
 
 nav {
@@ -65,12 +66,10 @@ p {
 }
 
 .buttons a,
-
-
 .submitButtons {
     text-align: center;
     font-family: $monster;
-    font-size: 3.2rem; //slightly smaller to fit 320px screens
+    font-size: 3.1rem; //slightly smaller to fit 320px screens
     color: $orange;
     background: white;
     text-decoration: none;
@@ -85,6 +84,7 @@ p {
 .score {
   font-family: $halogen;
   font-size: 2rem;
+  font-weight: $bold;
 }
 
 form {
@@ -92,20 +92,30 @@ form {
   li {
     font-size: 2rem;
   }
+
+  legend {
+    font-style: oblique;
+    font-weight: $bold;
+  }
 }
 
-footer p {
-  font-size: 1.3rem;
-  text-align: center;
-  a {
-    text-decoration: none;
-    color: $purple;
-    padding: 10px 0;
-    &:hover,
-    &:focus {
-      color: $blue;
-      text-decoration: underline;
+footer {
+  p {
+    font-size: 1.3rem;
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: $purple;
+      padding: 10px 0;
+      &:hover,
+      &:focus {
+        color: $blue;
+        text-decoration: underline;
+      }
     }
+  }
+  .junoCollege {
+    display: block;
   }
 }
 

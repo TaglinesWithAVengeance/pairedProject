@@ -16,7 +16,7 @@
   <header>
     <div class="wrapper">
       <div class="titleContainer">
-        <h1><span class="taglinesh1">Taglines...</span>with a <span>vengeance!</span></h1>
+        <h1><span class="taglinesh1">Taglines...</span>with a <span class="vengeance">vengeance!</span></h1>
         <h3>Test your knowledge of movie taglines with this fun quiz!</h3>
       </div><!-- .titleContainer END -->
 
@@ -60,7 +60,7 @@
           <p class="score">Score: <span id="scoreCorrect">0</span>/<span id="scoreQuestionNumber">1</span></p>
         </div><!-- .questionScore END -->
 
-        <h2>What movie has the tagline...?</h2>
+        <h2 class="whatMovie">What movie has the tagline...?</h2>
         
         <form action="#">
           <legend></legend> <!-- Movie tagline will be generated here-->
@@ -97,7 +97,13 @@
   </main>
 
   <footer>
-    <p class="wrapper">Built with <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">The Movie DB API</a> | Created at <a href="https://junocollege.com/" target="_blank">Juno College</a></p>
+  <p class="wrapper">
+    Built with the
+    <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank">TMDb API</a> |
+    <span class="junoCollege">
+      Created at <a href="https://junocollege.com/" target="_blank">Juno College</a>
+    </span>
+  </p>
   </footer>
   <script src="./script.js"></script>
 </body>

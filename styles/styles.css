@@ -274,7 +274,7 @@ h1 {
   font-family: ccmonstermash, sans-serif;
   font-size: 2.9rem;
 }
-h1 span {
+h1 .vengeance {
   text-transform: uppercase;
 }
 h1 .taglinesh1 {
@@ -284,7 +284,7 @@ h1 .taglinesh1 {
 
 h2 {
   font-family: ccmonstermash, sans-serif;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
 }
 h2 span {
   text-transform: uppercase;
@@ -296,6 +296,7 @@ h3 {
   font-size: 1.2rem;
   color: black;
   padding-top: 10px;
+  width: 88%;
 }
 
 nav ul {
@@ -332,7 +333,7 @@ p.gameTagline {
 .submitButtons {
   text-align: center;
   font-family: ccmonstermash, sans-serif;
-  font-size: 3.2rem;
+  font-size: 3.1rem;
   color: #FF8811;
   background: white;
   text-decoration: none;
@@ -348,6 +349,7 @@ p.gameTagline {
 .score {
   font-family: halogen, sans-serif;
   font-size: 2rem;
+  font-weight: 700;
 }
 
 form {
@@ -355,6 +357,10 @@ form {
 }
 form li {
   font-size: 2rem;
+}
+form legend {
+  font-style: oblique;
+  font-weight: 700;
 }
 
 footer p {
@@ -369,6 +375,9 @@ footer p a {
 footer p a:hover, footer p a:focus {
   color: #0F22B4;
   text-decoration: underline;
+}
+footer .junoCollege {
+  display: block;
 }
 
 header {
@@ -393,7 +402,7 @@ header .wrapper {
   padding-top: 10px;
   position: fixed;
   z-index: 30;
-  right: 15px;
+  right: 14px;
   top: 5px;
   -webkit-transition: 0.1s;
   transition: 0.1s;
@@ -446,6 +455,7 @@ footer {
 
 main {
   height: 100%;
+  background-color: #FFF8F0;
 }
 
 .introduction {
@@ -507,6 +517,7 @@ main {
 .introduction .textContainer a {
   padding: 10px 25px;
   background-color: white;
+  font-size: 3.1rem;
 }
 
 .about {
@@ -597,6 +608,15 @@ main {
   border: 10px solid #9DD9D2;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .posterDisplay .posterReveal p {
   color: #FF8811;
@@ -604,6 +624,7 @@ main {
   text-align: center;
   font-size: 10rem;
   padding: 35px 0;
+  margin-top: -10px;
 }
 .posterDisplay .iconContainer {
   padding: 0 15px;
@@ -613,6 +634,7 @@ main {
   border-radius: 50%;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  background-color: white;
 }
 .posterDisplay .iconContainer .incorrect {
   background-color: red;
@@ -640,10 +662,13 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 10px 15px;
+}
+.gamePlay .whatMovie {
+  padding-left: 15px;
 }
 .gamePlay form {
-  padding: 10px 0;
+  padding: 10px 0 10px 15px;
 }
 .gamePlay form legend {
   font-size: 1.7rem;
@@ -694,7 +719,47 @@ main {
   border-color: #FF8811;
 }
 
+@media (min-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h1 .taglinesh1 {
+    display: inline;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    width: 80%;
+  }
+
+  .introduction .textContainer a {
+    font-size: 3.7rem;
+  }
+
+  label #text {
+    padding-left: 10px;
+  }
+
+  footer .junoCollege {
+    display: inline;
+  }
+}
 @media (min-width: 800px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    width: 100%;
+  }
+
   .introduction {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -706,12 +771,13 @@ main {
   }
   .introduction .imgContainer {
     margin: 40px 0;
-    width: 50%;
+    width: calc(80% - 50px);
     height: 450px;
   }
   .introduction .textContainer {
     width: 50%;
-    padding-left: 20px;
+    padding-left: 50px;
+    height: 450px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -719,13 +785,15 @@ main {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
   }
 
   .about .imgContainer {
     width: 55%;
+  }
+  .about .textContainer h2 {
+    font-size: 3rem;
   }
 
   .mobileContainer {
@@ -740,8 +808,20 @@ main {
   }
 }
 @media (min-width: 1000px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 4rem;
+  }
+
   .desktopNav a {
     padding: 10px 20px;
+  }
+
+  .introduction h2 {
+    font-size: 3.2rem;
   }
 
   .gamePlay {
@@ -750,29 +830,39 @@ main {
     display: flex;
     padding: 80px 0;
   }
+  .gamePlay form legend {
+    font-size: 2.4rem;
+    margin: 25px 0;
+  }
+  .gamePlay .score {
+    font-size: 2.2rem;
+  }
   .gamePlay .posterDisplay {
     width: 35%;
     position: relative;
   }
+  .gamePlay .posterDisplay p {
+    font-size: 17rem;
+  }
   .gamePlay .posterDisplay .posterReveal {
     position: absolute;
     top: 0;
-    max-width: 220px;
-    width: 90%;
-    height: 90%;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
   }
   .gamePlay .posterDisplay .iconContainer {
     position: absolute;
-    bottom: -25px;
+    bottom: -60px;
   }
   .gamePlay .posterDisplay .iconContainer:first-of-type {
-    left: 100px;
+    left: 75px;
   }
   .gamePlay .posterDisplay .iconContainer:last-of-type {
-    right: 100px;
+    right: 75px;
   }
   .gamePlay .posterDisplay .iconContainer i {
-    font-size: 4.2rem;
+    font-size: 4.3rem;
   }
   .gamePlay .textContainer {
     width: 65%;
