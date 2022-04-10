@@ -349,6 +349,7 @@ p.gameTagline {
 .score {
   font-family: halogen, sans-serif;
   font-size: 2rem;
+  font-weight: 700;
 }
 
 form {
@@ -661,10 +662,13 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 10px 15px;
+}
+.gamePlay .whatMovie {
+  padding-left: 15px;
 }
 .gamePlay form {
-  padding: 10px 0;
+  padding: 10px 0 10px 15px;
 }
 .gamePlay form legend {
   font-size: 1.7rem;
@@ -828,6 +832,10 @@ main {
   }
   .gamePlay form legend {
     font-size: 2.4rem;
+    margin: 25px 0;
+  }
+  .gamePlay .score {
+    font-size: 2.2rem;
   }
   .gamePlay .posterDisplay {
     width: 35%;
@@ -839,19 +847,19 @@ main {
   .gamePlay .posterDisplay .posterReveal {
     position: absolute;
     top: 0;
-    max-width: 220px;
-    width: 90%;
-    height: 90%;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
   }
   .gamePlay .posterDisplay .iconContainer {
     position: absolute;
-    bottom: -25px;
+    bottom: -60px;
   }
   .gamePlay .posterDisplay .iconContainer:first-of-type {
-    left: 100px;
+    left: 75px;
   }
   .gamePlay .posterDisplay .iconContainer:last-of-type {
-    right: 100px;
+    right: 75px;
   }
   .gamePlay .posterDisplay .iconContainer i {
     font-size: 4.3rem;

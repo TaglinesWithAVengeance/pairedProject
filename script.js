@@ -93,7 +93,7 @@ app.pullIDS = (movieObj) => {
 }
 
 app.changeTheData = (movie) => {
-  for(let i = 0; i < 20; i++){ 
+  for(let i = 0; i < 20; i++){
     if(movie[i].tagline){
       const { title, tagline, poster_path } = movie[i];
       app.movieList[i].name = title;
