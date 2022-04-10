@@ -23,7 +23,7 @@
       <nav>
         <div class="mobileContainer">
           <div class="mobileMenuIcon">
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-bars" aria-description="Open mobile navigation menu"></i>
           </div>
           <ul class="mobileNav">
             <li><a href="./index.html">Home</a></li>
@@ -44,13 +44,13 @@
     <section class="gamePlay wrapper">
       <div class="posterDisplay">
         <div class="iconContainer">
-          <i class="fa-regular fa-circle-xmark"></i>
+          <i class="fa-regular fa-circle-xmark" aria-label="x mark"></i>
         </div><!-- .iconContainer END --> 
         <div class="posterReveal">
           <p>?</p> <!-- Will change innerHTML of posterReveal to an img with src/alt -->
         </div><!-- .posterReveal END -->
         <div class="iconContainer">
-          <i class="fa-regular fa-circle-check"></i>
+          <i class="fa-regular fa-circle-check" aria-label="check mark"></i>
         </div><!-- .iconContainer END --> 
       </div><!-- .posterDisplay END -->
 
@@ -93,6 +93,11 @@
           </div><!-- .buttonsContainer END -->
         </form>
       </div><!-- .textContainer END -->
+      <div class="modal" id="pleaseSelectOption">
+        <div class="modalMessageBox">
+          <button class="closeModal" ariaLabel="Close Pop Up"></button>
+        </div>
+      </div> <!-- .modal END-->
     </section>
   </main>
 

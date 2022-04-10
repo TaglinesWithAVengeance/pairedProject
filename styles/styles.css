@@ -334,7 +334,7 @@ p.gameTagline {
   text-align: center;
   font-family: ccmonstermash, sans-serif;
   font-size: 3.1rem;
-  color: #FF8811;
+  color: #ff8811;
   background: white;
   text-decoration: none;
   text-transform: uppercase;
@@ -343,7 +343,7 @@ p.gameTagline {
 .buttons a:hover, .buttons a:focus,
 .submitButtons:hover,
 .submitButtons:focus {
-  border: 5px solid #FF8811;
+  border: 5px solid #ff8811;
 }
 
 .score {
@@ -410,7 +410,7 @@ header .wrapper {
   transition: 0.1s;
 }
 .mobileContainer .mobileMenuIcon:hover, .mobileContainer .mobileMenuIcon:focus {
-  color: #FF8811;
+  color: #ff8811;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -437,7 +437,7 @@ header .wrapper {
       -ms-flex-align: center;
           align-items: center;
   background-color: #9DD9D2;
-  border: 8px solid #FF8811;
+  border: 8px solid #ff8811;
   border-radius: 25px;
 }
 .mobileContainer .mobileNav a {
@@ -624,7 +624,7 @@ main {
           justify-content: center;
 }
 .posterDisplay .posterReveal p {
-  color: #FF8811;
+  color: #ff8811;
   font-family: ccmonstermash, sans-serif;
   text-align: center;
   font-size: 10rem;
@@ -705,7 +705,7 @@ main {
   display: none;
 }
 .gamePlay ul li input[type=radio]:checked + * {
-  color: #FF8811;
+  color: #ff8811;
 }
 .gamePlay ul li input[type=radio] + *::before {
   content: "";
@@ -720,8 +720,8 @@ main {
   border-color: #392F5A;
 }
 .gamePlay ul li input[type=radio]:checked + *::before {
-  background: radial-gradient(#FF8811 0%, #FF8811 40%, white 50%, white);
-  border-color: #FF8811;
+  background: radial-gradient(#ff8811 0%, #ff8811 40%, white 50%, white);
+  border-color: #ff8811;
 }
 
 @media (min-width: 480px) {
