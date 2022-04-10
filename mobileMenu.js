@@ -1,40 +1,40 @@
 // create the namespace
-const app = {};
+const appMenu = {};
 
 // query the hamburger menu and navigation elements
-app.hamburgerButton = document.querySelector('.mobileMenuIcon');
-app.hamburgerIcon = document.querySelector('.mobileMenuIcon i');
-app.navigationList = document.querySelector('.mobileNav');
-app.navigationListItem = document.querySelectorAll('.mobileNav li');
+appMenu.hamburgerButton = document.querySelector('.mobileMenuIcon');
+appMenu.hamburgerIcon = document.querySelector('.mobileMenuIcon i');
+appMenu.navigationList = document.querySelector('.mobileNav');
+appMenu.navigationListItem = document.querySelectorAll('.mobileNav li');
 
-app.openHamburgerNav = () => {
-	app.hamburgerOpen = true;
+appMenu.openHamburgerNav = () => {
+	appMenu.hamburgerOpen = true;
 	// change the hamburger icon to the "x" icon
-	app.hamburgerIcon.classList.toggle('fa-xmark');
-	app.hamburgerIcon.classList.toggle('fa-bars');
+	appMenu.hamburgerIcon.classList.toggle('fa-xmark');
+	appMenu.hamburgerIcon.classList.toggle('fa-bars');
 	// add the navOpen class to the nav menu list
-	app.navigationList.classList.add('navOpen');
+	appMenu.navigationList.classList.add('navOpen');
 }
 
-app.closeHamburgerNav = () => {
+appMenu.closeHamburgerNav = () => {
 	// change the hamburger icon to the "x" icon.
-	app.hamburgerIcon.classList.toggle('fa-xmark');
-	app.hamburgerIcon.classList.toggle('fa-bars');
+	appMenu.hamburgerIcon.classList.toggle('fa-xmark');
+	appMenu.hamburgerIcon.classList.toggle('fa-bars');
 	// remove the navOpen class to the nav menu list
-	app.navigationList.classList.remove('navOpen');
+	appMenu.navigationList.classList.remove('navOpen');
 	// the menu is now closed
-	app.hamburgerOpen = false;
+	appMenu.hamburgerOpen = false;
 }
 
-app.hamburgerClick = () => {
+appMenu.hamburgerClick = () => {
 	// when the hamburger button is clicked:
 	// if the menu is open, close it
-	if(app.hamburgerOpen){
-		app.closeHamburgerNav();
+	if(appMenu.hamburgerOpen){
+		appMenu.closeHamburgerNav();
 	// if the menu is closed, open it
 	} else {
-		app.openHamburgerNav();
+		appMenu.openHamburgerNav();
 	}
 }
 
-app.hamburgerButton.addEventListener('click', app.hamburgerClick);
+appMenu.hamburgerButton.addEventListener('click', appMenu.hamburgerClick);
