@@ -57,32 +57,32 @@
       <div class="textContainer">
         <div class="questionScore">
           <h2>Question <span id="questionCount">1</span>:</h2>
-          <p class="score">Score: <span id="scoreCorrect">0</span>/<span id="scoreQuestionNumber">1</span></p>
+          <p class="score" aria-live="polite">Score: <span id="scoreCorrect">0</span>/<span id="scoreQuestionNumber">1</span></p>
         </div><!-- .questionScore END -->
 
         <h2 class="whatMovie">What movie has the tagline...?</h2>
         
-        <form action="#">
+        <form action="submit">
           <legend></legend> <!-- Movie tagline will be generated here-->
 
           <ul>
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="aOption">
+              <input type="radio" name="taglineChoice" value="lorem" id="aOption" aria-required: true>
               <label for="aOption"></label>
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="bOption">
+              <input type="radio" name="taglineChoice" value="lorem" id="bOption" aria-required: true>
               <label for="bOption"></label>
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="cOption">
+              <input type="radio" name="taglineChoice" value="lorem" id="cOption" aria-required: true>
               <label for="cOption"></label>
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="dOption">
+              <input type="radio" name="taglineChoice" value="lorem" id="dOption" aria-required: true>
               <label for="dOption"></label>
             </li>
           </ul>
@@ -98,6 +98,9 @@
           <button class="closeModal" ariaLabel="Close Pop Up"></button>
         </div>
       </div> <!-- .modal END-->
+      <div id="answerAnnounce" aria-live="polite" class="sr-only">
+        <!-- An AT accessible announcement will be added here after the user hits submit -->
+      </div> <!--#answerAnnounce END-->
     </section>
   </main>
 

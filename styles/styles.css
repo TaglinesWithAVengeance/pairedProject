@@ -334,7 +334,7 @@ p.gameTagline {
   text-align: center;
   font-family: ccmonstermash, sans-serif;
   font-size: 3.1rem;
-  color: #ff8811;
+  color: #D53900;
   background: white;
   text-decoration: none;
   text-transform: uppercase;
@@ -343,7 +343,7 @@ p.gameTagline {
 .buttons a:hover, .buttons a:focus,
 .submitButtons:hover,
 .submitButtons:focus {
-  border: 5px solid #ff8811;
+  border: 5px solid #D53900;
 }
 
 .score {
@@ -410,7 +410,7 @@ header .wrapper {
   transition: 0.1s;
 }
 .mobileContainer .mobileMenuIcon:hover, .mobileContainer .mobileMenuIcon:focus {
-  color: #ff8811;
+  color: #D53900;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -437,7 +437,7 @@ header .wrapper {
       -ms-flex-align: center;
           align-items: center;
   background-color: #9DD9D2;
-  border: 8px solid #ff8811;
+  border: 8px solid #D53900;
   border-radius: 25px;
 }
 .mobileContainer .mobileNav a {
@@ -582,8 +582,8 @@ main {
   height: 100%;
 }
 .about .logoContainer img {
-  width: 30%;
-  height: 100%;
+  width: 25%;
+  height: 50%;
 }
 
 .posterDisplay {
@@ -624,7 +624,7 @@ main {
           justify-content: center;
 }
 .posterDisplay .posterReveal p {
-  color: #ff8811;
+  color: #FFF8F0;
   font-family: ccmonstermash, sans-serif;
   text-align: center;
   font-size: 10rem;
@@ -705,7 +705,7 @@ main {
   display: none;
 }
 .gamePlay ul li input[type=radio]:checked + * {
-  color: #ff8811;
+  color: #D53900;
 }
 .gamePlay ul li input[type=radio] + *::before {
   content: "";
@@ -720,8 +720,8 @@ main {
   border-color: #392F5A;
 }
 .gamePlay ul li input[type=radio]:checked + *::before {
-  background: radial-gradient(#ff8811 0%, #ff8811 40%, white 50%, white);
-  border-color: #ff8811;
+  background: radial-gradient(#D53900 0%, #D53900 40%, white 50%, white);
+  border-color: #D53900;
 }
 
 @media (min-width: 480px) {
@@ -800,6 +800,11 @@ footer .onUnsplash {
   }
   .about .textContainer h2 {
     font-size: 3rem;
+  }
+  .about .logoContainer {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
 
   .mobileContainer {

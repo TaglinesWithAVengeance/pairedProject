@@ -31,6 +31,10 @@ app.hamburgerButton = document.querySelector('.mobileMenuIcon')
 app.hamburgerIcon = document.querySelector('.mobileMenuIcon i')
 app.navigationList = document.querySelector('.mobileNav')
 app.navigationListItem = document.querySelectorAll('.mobileNav li')
+
+// query the announcement div so that it can be updated with an accessible response after the user hits submit
+app.ariaAnswerAnnouncement = document.querySelector('#answerAnnounce')
+
 // Storing API key
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 app.searchPage = 1; // Starts with the first page of the most popular movies.
@@ -185,6 +189,7 @@ app.submitButtonEl.addEventListener('click', (event) => {
   app.checkIconEl = document.querySelector('.fa-circle-check')
   app.xIconEl = document.querySelector('.fa-circle-xmark')
   app.posterContainer = document.querySelector('.posterReveal')
+  
   // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
   
   if(!app.questionSubmitted){
@@ -212,6 +217,8 @@ app.submitButtonEl.addEventListener('click', (event) => {
       // If the user chooses the correct option. Up the user's score by 1.
       app.userScore++;
       app.scoreCorrectEl.innerText = app.userScore;
+      // update the accessible announcement section that the user was correct.
+      app.ariaAnswerAnnouncement.innerHTML = `<p>Correct!</p>`
 
       //update the question number and score "out of" number
       app.scoreQuestionNumberEl.innerText = app.questionNumber;
@@ -221,6 +228,9 @@ app.submitButtonEl.addEventListener('click', (event) => {
       app.xIconEl.classList.toggle('grayedOut');
     } else {
       // If the user chooses the incorrect option: change the x icon color to red.
+      // update the accessible announcement section that the user was correct.
+      app.ariaAnswerAnnouncement.innerHTML = `<p>Sorry, incorrect... This tagline was for ${correctMovieOutput.name}</p>`
+
       app.xIconEl.classList.toggle('incorrect');
       app.checkIconEl.classList.toggle('grayedOut');
       // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
@@ -291,6 +301,7 @@ app.refreshGameplayPage = () => {
   app.checkIconEl.classList.remove('correct');
   app.xIconEl.classList.remove('grayedOut');
   app.xIconEl.classList.remove('incorrect');
+  app.ariaAnswerAnnouncement.innerHTML = ""
   for(i = 0; i < 4; i++){
     app.radioButtons[i].disabled = false;  
     app.radioButtons[i].checked = false;
