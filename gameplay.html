@@ -93,11 +93,7 @@
           </div><!-- .buttonsContainer END -->
         </form>
       </div><!-- .textContainer END -->
-      <div class="modal" id="pleaseSelectOption">
-        <div class="modalMessageBox">
-          <button class="closeModal" ariaLabel="Close Pop Up"></button>
-        </div>
-      </div> <!-- .modal END-->
+      
       <div id="answerAnnounce" aria-live="polite" class="sr-only">
         <!-- An AT accessible announcement will be added here after the user hits submit -->
       </div> <!--#answerAnnounce END-->
@@ -113,6 +109,16 @@
     </span>
   </p>
   </footer>
+  <div class="modal" id="modal">
+    <button class="closeModal" aria-label="Close message box">
+    </button>
+    <div class="modalMessageBox">
+      <i class="fa-solid fa-xmark"></i>
+      <h2>Try your best guess!</h2>
+      <p class="modalText">Please select a movie option before submitting</p>
+    </div>
+    <!--.modalMessageBox END-->
+  </div> <!-- .modal END-->
   <script src="./script.js"></script>
 </body>
 </html>

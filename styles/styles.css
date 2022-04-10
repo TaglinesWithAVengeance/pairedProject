@@ -240,6 +240,7 @@ body {
           justify-content: space-between;
   height: 100vh;
   max-height: 100%;
+  position: relative;
 }
 
 .wrapper {
@@ -422,7 +423,6 @@ header .wrapper {
   transition: 0.3s;
   width: 100%;
   height: 100%;
-  opacity: 0.9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -436,7 +436,7 @@ header .wrapper {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #9DD9D2;
+  background-color: rgba(157, 217, 210, 0.9);
   border: 8px solid #D53900;
   border-radius: 25px;
 }
@@ -624,7 +624,7 @@ main {
           justify-content: center;
 }
 .posterDisplay .posterReveal p {
-  color: #FFF8F0;
+  color: #9DD9D2;
   font-family: ccmonstermash, sans-serif;
   text-align: center;
   font-size: 10rem;
@@ -650,6 +650,86 @@ main {
   background-color: green;
   -webkit-transform: scale(1.4);
           transform: scale(1.4);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(57, 47, 90, 0.9);
+  width: 100vw;
+  height: 100vh;
+  z-index: 40;
+}
+.modal button {
+  position: absolute;
+  cursor: pointer;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.modal .modalMessageBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  width: 90%;
+  height: 33%;
+  background: #9DD9D2;
+  border-radius: 25px;
+  border: 8px solid #D53900;
+  opacity: 1;
+  z-index: 50;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.modal .modalMessageBox h2 {
+  color: #392F5A;
+  font-size: 2.5rem;
+  margin: 25px 0;
+}
+.modal .modalMessageBox .modalText {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #392F5A;
+  cursor: pointer;
+  padding: 0 25px;
+}
+.modal .modalMessageBox .fa-solid.fa-xmark {
+  font-size: 3rem;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #392F5A;
+}
+.modal .modalMessageBox .fa-solid.fa-xmark:hover, .modal .modalMessageBox .fa-solid.fa-xmark:focus {
+  color: #D53900;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .grayedOut {

@@ -32,8 +32,12 @@ app.hamburgerIcon = document.querySelector('.mobileMenuIcon i')
 app.navigationList = document.querySelector('.mobileNav')
 app.navigationListItem = document.querySelectorAll('.mobileNav li')
 
-// query the announcement div so that it can be updated with an accessible response after the user hits submit
+// query the announcement div for AT accessible responses after the user hits submit
 app.ariaAnswerAnnouncement = document.querySelector('#answerAnnounce')
+
+
+// query the modal elements
+
 
 // Storing API key
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';

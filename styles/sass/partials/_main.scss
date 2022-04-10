@@ -131,7 +131,7 @@ main {
     justify-content: center;
     
     p {
-      color: $white;
+      color: $seafoam;
       font-family: $monster;
       text-align: center;
       font-size: 10rem;
@@ -158,7 +158,71 @@ main {
     }
   }
 }
-
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(57, 47, 90, 0.9);
+  width: 100vw;
+  height: 100vh;
+  z-index: 40;
+  
+  button {
+    position: absolute;
+    cursor: pointer;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+  .modalMessageBox {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    height: 33%;
+    background: $seafoam;
+    border-radius: 25px;
+    border: 8px solid $orange;
+    opacity: 1;
+    z-index: 50;
+    transition: all 0.3s ease-in-out;
+    
+    h2 {
+      color: $purple;
+      font-size: 2.5rem;
+      margin: 25px 0;
+    }
+    .modalText {
+      font-size: 1.4rem;
+      font-weight: $bold;
+      color: $purple;
+      cursor: pointer;
+      padding: 0 25px;
+    }
+    .fa-solid.fa-xmark {
+      font-size: 3rem;
+      position: absolute;
+      top: 10px;
+      right: 25px;
+      color: $purple;
+      &:hover,
+      &:focus {
+        color: $orange;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
 // creating a class for when buttons are inactive
 .grayedOut {
   opacity: 0.3;
