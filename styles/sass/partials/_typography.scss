@@ -5,7 +5,7 @@ html {
 
 h1 {
   font-family: $monster;
-  font-size: 2.9rem; //went smaller to fit on 320px screens
+  font-size: 2.9rem;
   .vengeance {
     text-transform: uppercase;
   }
@@ -17,7 +17,7 @@ h1 {
 
 h2 {
   font-family: $monster;
-  font-size: 1.8rem; // adjusted to fit on one line at 320px
+  font-size: 1.8rem;
   span {
     text-transform: uppercase;
   }
@@ -46,13 +46,13 @@ nav {
     }
   }
   .mobileNav a {
-    font-size: 2rem; //placeholder
+    font-size: 2rem; 
   }
   .desktopNav a {
-    font-size: 2.8rem; //placeholder
+    font-size: 2.8rem;
   }
   .mobileMenuIcon {
-    font-size: 3rem; //went smaller to fit on 320px screens
+    font-size: 3rem;
   }
 }
 
@@ -69,7 +69,7 @@ p {
 .submitButtons {
     text-align: center;
     font-family: $monster;
-    font-size: 3.1rem; //slightly smaller to fit 320px screens
+    font-size: 3.1rem;
     color: $orange;
     background: white;
     text-decoration: none;
