@@ -250,7 +250,7 @@ app.refreshGameplayPage = () => {
   }else{
     app.searchPage++;
   }
-  app.posterContainer.innerHTML = `<p>?</p>` // reset posterReveal
+  app.posterContainer.innerHTML = `<p>?</p>`; // reset posterReveal
   // increase question number and display it
   app.questionNumber++; 
   app.questionCountEl.innerText = app.questionNumber;
