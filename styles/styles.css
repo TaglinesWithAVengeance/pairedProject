@@ -376,7 +376,9 @@ footer p a:hover, footer p a:focus {
   color: #0F22B4;
   text-decoration: underline;
 }
-footer .junoCollege {
+footer .junoCollege,
+footer .unsplash,
+footer .onUnsplash {
   display: block;
 }
 
@@ -413,20 +415,14 @@ header .wrapper {
           transform: scale(1.1);
 }
 .mobileContainer .mobileNav {
-  border: 3px solid #392F5A;
-  background-color: #FF8811;
   position: fixed;
-  left: -500px;
+  right: -10000px;
   top: 0;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
-}
-.mobileContainer .navOpen {
-  border-radius: 25px;
-  left: 0;
-  top: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   width: 100%;
   height: 100%;
+  opacity: 0.9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -434,19 +430,23 @@ header .wrapper {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  z-index: 10;
-  opacity: 0.9;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: #9DD9D2;
   border: 8px solid #FF8811;
+  border-radius: 25px;
 }
-.mobileContainer .navOpen a {
+.mobileContainer .mobileNav a {
   font-size: 5rem;
+}
+.mobileContainer .navOpen {
+  right: 0;
+  top: 0;
+  z-index: 10;
 }
 
 footer {
@@ -743,7 +743,8 @@ main {
     padding-left: 10px;
   }
 
-  footer .junoCollege {
+  footer .junoCollege,
+footer .onUnsplash {
     display: inline;
   }
 }
@@ -822,6 +823,10 @@ main {
 
   .introduction h2 {
     font-size: 3.2rem;
+  }
+
+  footer .unsplash {
+    display: inline;
   }
 
   .gamePlay {
