@@ -147,7 +147,7 @@ app.selectRandomMovies = (listOfMovies) => {
 
 app.displayMovieInfo = (fourMoviesArray) => {
   // choose a random number between 0 and 3 for index
-  let randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length);
+  const randomMovieIndex = Math.floor(Math.random() * fourMoviesArray.length);
 
   // set movie at random index as "correct" movie
   const correctMovieInfo = fourMoviesArray[randomMovieIndex];
