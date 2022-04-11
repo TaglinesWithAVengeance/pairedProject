@@ -37,7 +37,28 @@ app.ariaAnswerAnnouncement = document.querySelector('#answerAnnounce')
 
 
 // query the modal elements
+app.modal = document.querySelector('#modal')
+app.modalButton = document.querySelector('.closeModal')
+app.modalX = document.querySelector("#modalX")
+app.modalHeading = document.querySelector(".modalHeading")
+app.modalText = document.querySelector(".modalText");
+// Start with modals closed;
+app.modalOpen = false;
 
+app.openModal = (heading, text) => {
+  app.modalOpen = true;
+  app.modal.classList.toggle("modalClosed");
+  app.modal.classList.toggle("modalOpen");
+  app.modalHeading.innerText = heading;
+  app.modalText.innerText = text;
+}
+app.closeModal = () => {
+  app.modalOpen = false;
+  app.modal.classList.toggle("modalClosed");
+  app.modal.classList.toggle("modalOpen");
+  app.modalHeading.innerText = ""
+  app.modalText.innerText = ""
+}
 
 // Storing API key
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
@@ -206,14 +227,27 @@ app.submitButtonEl.addEventListener('click', (event) => {
     }
 
   const correctMovieOutput = findCorrectMovie();
+  
+  // check if an movie option was selected before hitting submit
+  app.optionWasSelected = false;
+  for(let i = 0; i < app.radioButtons.length; i++){
+    if(app.radioButtons[i].checked){
+      app.optionWasSelected = true;
+    }
+  }
 
+  if (!app.optionWasSelected){
+    let heading = "Try your best guess!"
+    let message = "Please select a movie option before submitting."
+    return app.openModal(heading, message);
+  }
     // Prevent the user from selecting another option for this question.
     for(i = 0; i < 4; i++){
         app.radioButtons[i].disabled = true;
       }
     // Change app.questionSubmitted to true
     app.questionSubmitted = true;
-    // Grey out the submit button
+    // Gray out the submit button
     app.submitButtonEl.classList.toggle('grayedOut');
     app.nextButtonEl.classList.toggle('grayedOut');
     app.getPoster(correctMovieOutput.posterPath);
@@ -227,7 +261,7 @@ app.submitButtonEl.addEventListener('click', (event) => {
       //update the question number and score "out of" number
       app.scoreQuestionNumberEl.innerText = app.questionNumber;
       
-      // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
+      // Change the background of the check mark icon to green, Increase the checkmark's container size and gray out the x.
       app.checkIconEl.classList.toggle('correct');
       app.xIconEl.classList.toggle('grayedOut');
     } else {
@@ -237,7 +271,7 @@ app.submitButtonEl.addEventListener('click', (event) => {
 
       app.xIconEl.classList.toggle('incorrect');
       app.checkIconEl.classList.toggle('grayedOut');
-      // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
+      // Change the background of the x icon to red, Increase the x mark's container size and gray out the checkmark.
     }
   }
 })
@@ -278,7 +312,13 @@ app.hamburgerClick = () => {
     app.openHamburgerNav();
   }
 }
+// event listener for the mobile menu hamburger button
 app.hamburgerButton.addEventListener('click', app.hamburgerClick)
+
+// event listener for the button that closes the modal
+app.modalButton.addEventListener('click', app.closeModal)
+// event listener for the x icon that closes the modal
+app.modalX.addEventListener('click', app.closeModal)
 
 app.getPoster = (posterPath, movieTitle) => {
   let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;

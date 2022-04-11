@@ -158,12 +158,22 @@ main {
     }
   }
 }
-.modal {
-  position: fixed;
+.modalClosed {
+  visibility: none;
+  position: absolute;
+  left: -5000px;
   top: 0;
+  transition: unset;
+}
+.modalOpen {
+  visibility: visible;
+  position: fixed;
   left: 0;
-  padding: 0;
-  margin: 0;
+  height: 100vh;
+  width: 100vh;
+  transition: all 0.5s ease-in-out;
+}
+.modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,12 +182,12 @@ main {
   height: 100vh;
   z-index: 40;
   
-  button {
-    position: absolute;
+  .closeModal {
+    position: fixed;
     cursor: pointer;
     width: 100vw;
     height: 100vh;
-    z-index: 60;
+    z-index: 50;
     border: none;
     outline: none;
     background: transparent;
@@ -189,13 +199,12 @@ main {
     align-items: center;
     position: relative;
     width: 90%;
-    height: 33%;
+    height: 50%;
     background: $seafoam;
     border-radius: 25px;
     border: 8px solid $orange;
     opacity: 1;
-    z-index: 50;
-    transition: all 0.3s ease-in-out;
+    z-index: 60;
     
     h2 {
       color: $purple;
@@ -203,10 +212,10 @@ main {
       margin: 25px 0;
     }
     .modalText {
+      text-align: center;
       font-size: 1.4rem;
       font-weight: $bold;
       color: $purple;
-      cursor: pointer;
       padding: 0 25px;
     }
     i {
@@ -216,6 +225,8 @@ main {
       right: 25px;
       color: $purple;
       z-index: 70;
+      padding: 25px;
+      cursor: pointer;
       &:hover,
       &:focus {
         color: $orange;

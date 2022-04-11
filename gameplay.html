@@ -67,22 +67,22 @@
 
           <ul>
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="aOption" aria-required: true>
+              <input type="radio" name="taglineChoice" value="lorem" id="aOption" aria-required="true">
               <label for="aOption"></label>
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="bOption" aria-required: true>
+              <input type="radio" name="taglineChoice" value="lorem" id="bOption" aria-required="true">
               <label for="bOption"></label>
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="cOption" aria-required: true>
+              <input type="radio" name="taglineChoice" value="lorem" id="cOption" aria-required="true">
               <label for="cOption"></label>
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="dOption" aria-required: true>
+              <input type="radio" name="taglineChoice" value="lorem" id="dOption" aria-required="true">
               <label for="dOption"></label>
             </li>
           </ul>
@@ -109,13 +109,13 @@
     </span>
   </p>
   </footer>
-  <div class="modal" id="modal">
+  <div class="modal modalClosed" id="modal">
     <button class="closeModal" aria-label="Close message box">
     </button>
     <div class="modalMessageBox">
-      <i class="fa-solid fa-xmark"></i>
-      <h2>Try your best guess!</h2>
-      <p class="modalText">Please select a movie option before submitting.</p>
+      <i class="fa-solid fa-xmark" id="modalX" aria-label="Close message box"></i>
+      <h2 class="modalHeading"></h2>
+      <p class="modalText"></p>
     </div>
     <!--.modalMessageBox END-->
   </div> <!-- .modal END-->

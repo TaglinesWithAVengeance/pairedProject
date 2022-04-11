@@ -652,12 +652,26 @@ main {
           transform: scale(1.4);
 }
 
-.modal {
-  position: fixed;
+.modalClosed {
+  visibility: none;
+  position: absolute;
+  left: -5000px;
   top: 0;
+  -webkit-transition: unset;
+  transition: unset;
+}
+
+.modalOpen {
+  visibility: visible;
+  position: fixed;
   left: 0;
-  padding: 0;
-  margin: 0;
+  height: 100vh;
+  width: 100vh;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -672,12 +686,12 @@ main {
   height: 100vh;
   z-index: 40;
 }
-.modal button {
-  position: absolute;
+.modal .closeModal {
+  position: fixed;
   cursor: pointer;
   width: 100vw;
   height: 100vh;
-  z-index: 60;
+  z-index: 50;
   border: none;
   outline: none;
   background: transparent;
@@ -698,14 +712,12 @@ main {
           align-items: center;
   position: relative;
   width: 90%;
-  height: 33%;
+  height: 50%;
   background: #9DD9D2;
   border-radius: 25px;
   border: 8px solid #D53900;
   opacity: 1;
-  z-index: 50;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  z-index: 60;
 }
 .modal .modalMessageBox h2 {
   color: #392F5A;
@@ -713,10 +725,10 @@ main {
   margin: 25px 0;
 }
 .modal .modalMessageBox .modalText {
+  text-align: center;
   font-size: 1.4rem;
   font-weight: 700;
   color: #392F5A;
-  cursor: pointer;
   padding: 0 25px;
 }
 .modal .modalMessageBox i {
@@ -726,6 +738,8 @@ main {
   right: 25px;
   color: #392F5A;
   z-index: 70;
+  padding: 25px;
+  cursor: pointer;
 }
 .modal .modalMessageBox i:hover, .modal .modalMessageBox i:focus {
   color: #D53900;
@@ -880,7 +894,6 @@ footer .onUnsplash {
   }
 
   .modal .modalMessageBox .modalText {
-    text-align: center;
     font-size: 2.4rem;
   }
   .modal .modalMessageBox h2 {
