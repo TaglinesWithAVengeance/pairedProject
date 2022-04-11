@@ -45,17 +45,25 @@ app.modalText = document.querySelector(".modalText");
 // Start with modals closed;
 app.modalOpen = false;
 
-app.openModal = (heading, text) => {
+// receive the heading and texts as parameters for the function
+app.openModal = (heading, message) => {
+  // The modal is now open
   app.modalOpen = true;
+  // toggle the classes that open the modal
   app.modal.classList.toggle("modalClosed");
   app.modal.classList.toggle("modalOpen");
+  // Change the text of the heading and the message
   app.modalHeading.innerText = heading;
-  app.modalText.innerText = text;
+  app.modalText.innerText = message;
 }
+// Close the modal
 app.closeModal = () => {
+  // The modal is now open
   app.modalOpen = false;
+  // Toggle the classes that close the modal
   app.modal.classList.toggle("modalClosed");
   app.modal.classList.toggle("modalOpen");
+  // Remove the current heading and message from the modal.
   app.modalHeading.innerText = ""
   app.modalText.innerText = ""
 }
@@ -235,7 +243,7 @@ app.submitButtonEl.addEventListener('click', (event) => {
       app.optionWasSelected = true;
     }
   }
-
+  // If no option was selected, send an error with the modal function.
   if (!app.optionWasSelected){
     let heading = "Try your best guess!"
     let message = "Please select a movie option before submitting."
@@ -320,11 +328,16 @@ app.modalButton.addEventListener('click', app.closeModal)
 // event listener for the x icon that closes the modal
 app.modalX.addEventListener('click', app.closeModal)
 
+// Retrieve the poster for the film that matches the tagline
 app.getPoster = (posterPath, movieTitle) => {
+  // use the info from the configuration API call and the movies API call to get the image URL.
   let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
+  // create a poster image element
   app.posterImage = document.createElement('img');
+  // set the src and alt text for the newly created img element
   app.posterImage.src = posterUrl;
   app.posterImage.alt = `Movie poster for ${movieTitle}`;
+  // clear out the "?"" from the posterContainer and add the poster image itself.
   app.posterContainer.innerHTML = "";
   app.posterContainer.appendChild(app.posterImage);
 }
