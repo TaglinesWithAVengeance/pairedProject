@@ -677,7 +677,7 @@ main {
   cursor: pointer;
   width: 100vw;
   height: 100vh;
-  opacity: 1;
+  z-index: 60;
   border: none;
   outline: none;
   background: transparent;
@@ -719,14 +719,15 @@ main {
   cursor: pointer;
   padding: 0 25px;
 }
-.modal .modalMessageBox .fa-solid.fa-xmark {
+.modal .modalMessageBox i {
   font-size: 3rem;
   position: absolute;
   top: 10px;
   right: 25px;
   color: #392F5A;
+  z-index: 70;
 }
-.modal .modalMessageBox .fa-solid.fa-xmark:hover, .modal .modalMessageBox .fa-solid.fa-xmark:focus {
+.modal .modalMessageBox i:hover, .modal .modalMessageBox i:focus {
   color: #D53900;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
@@ -824,8 +825,11 @@ main {
     font-size: 3.7rem;
   }
 
-  label #text {
-    padding-left: 10px;
+  .modal .modalMessageBox .modalText {
+    font-size: 2rem;
+  }
+  .modal .modalMessageBox h2 {
+    font-size: 3.5rem;
   }
 
   footer .junoCollege,
@@ -873,6 +877,14 @@ footer .onUnsplash {
             flex-direction: column;
     -ms-flex-pack: distribute;
         justify-content: space-around;
+  }
+
+  .modal .modalMessageBox .modalText {
+    text-align: center;
+    font-size: 2.4rem;
+  }
+  .modal .modalMessageBox h2 {
+    font-size: 4.5rem;
   }
 
   .about .imgContainer {
@@ -961,5 +973,12 @@ footer .onUnsplash {
   }
   .gamePlay .textContainer {
     width: 65%;
+  }
+
+  .modal .modalMessageBox {
+    width: 80%;
+  }
+  .modal .modalMessageBox h2 {
+    font-size: 6.5rem;
   }
 }
