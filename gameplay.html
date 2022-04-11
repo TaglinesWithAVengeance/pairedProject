@@ -47,7 +47,7 @@
           <i class="fa-regular fa-circle-xmark" aria-label="x mark"></i>
         </div><!-- .iconContainer END --> 
         <div class="posterReveal">
-          <p>?</p> <!-- Will change innerHTML of posterReveal to an img with src/alt -->
+          <p>?</p>
         </div><!-- .posterReveal END -->
         <div class="iconContainer">
           <i class="fa-regular fa-circle-check" aria-label="check mark"></i>
@@ -62,34 +62,34 @@
 
         <h2 class="whatMovie">What movie has the tagline...?</h2>
         
-        <form action="submit">
-          <legend></legend> <!-- Movie tagline will be generated here-->
+        <form action="#">
+          <legend></legend> <!-- Movie tagline generated here -->
 
           <ul>
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="aOption" aria-required="true">
-              <label for="aOption"></label>
+              <input type="radio" name="taglineChoice" value="lorem" id="aOption">
+              <label for="aOption"></label> <!-- Movie name generated here -->
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="bOption" aria-required="true">
-              <label for="bOption"></label>
+              <input type="radio" name="taglineChoice" value="lorem" id="bOption">
+              <label for="bOption"></label> <!-- Movie name generated here -->
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="cOption" aria-required="true">
-              <label for="cOption"></label>
+              <input type="radio" name="taglineChoice" value="lorem" id="cOption">
+              <label for="cOption"></label> <!-- Movie name generated here -->
             </li>
 
             <li>
-              <input type="radio" name="taglineChoice" value="lorem" id="dOption" aria-required="true">
-              <label for="dOption"></label>
+              <input type="radio" name="taglineChoice" value="lorem" id="dOption">
+              <label for="dOption"></label> <!-- Movie name generated here -->
             </li>
           </ul>
 
           <div class="buttonsContainer">
             <button class="submitButtons submit" id="submit" type="submit">Submit</button>
-            <button class="submitButtons next grayedOut" id="next" type="submit">Next <i class="fa-solid fa-angle-right"></i></button> <!-- If we leave the default for this submit button, it should refresh the page, prompting another call and a new question to be pulled in -->
+            <button class="submitButtons next grayedOut" id="next" type="submit">Next <i class="fa-solid fa-angle-right"></i></button>
           </div><!-- .buttonsContainer END -->
         </form>
       </div><!-- .textContainer END -->
@@ -109,6 +109,7 @@
     </span>
   </p>
   </footer>
+<<<<<<< HEAD
   <div class="modal modalClosed" id="modal">
     <button class="closeModal" aria-label="Close message box">
     </button>
@@ -119,6 +120,10 @@
     </div>
     <!--.modalMessageBox END-->
   </div> <!-- .modal END-->
+=======
+
+>>>>>>> cleaningCode
   <script src="./script.js"></script>
+  <script src="./mobileMenu.js"></script>
 </body>
 </html>

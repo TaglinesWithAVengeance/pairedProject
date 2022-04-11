@@ -1,4 +1,3 @@
-// ensure the body takes up the entire viewport and the footer remains at the end.
 body { 
   display: flex;
   flex-direction: column;
@@ -7,6 +6,7 @@ body {
   max-height: 100%;
   position: relative;
 }
+
 .wrapper {
   max-width: 1200px;
   width: 90%;

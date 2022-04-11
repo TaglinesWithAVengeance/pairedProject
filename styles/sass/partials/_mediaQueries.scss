@@ -2,18 +2,20 @@
   // header
   h1 {
     font-size: 2.5rem;
-  
     .taglinesh1 {
       display: inline;
     }
   }
+
   h2 {
     font-size: 2.5rem;
   }
+
   h3 {
     width: 80%;
   }
-  // home page
+
+  // index/home page
   .introduction .textContainer a {
     font-size: 3.7rem;
   }
@@ -41,6 +43,7 @@
   h1 {
     font-size: 3.0rem;
   }
+
   h2 {
     font-size: 3.0rem;
   }
@@ -48,6 +51,7 @@
   h3 {
     width: 100%;
   }
+
   // index/home page
   .introduction {
     display: flex;
@@ -90,7 +94,7 @@
     }
   }
 
-  //desktopNav
+  // swap to desktopNav
   .mobileContainer {
     display: none;
   }
@@ -112,12 +116,14 @@
   h2 {
     font-size: 4.0rem
   }
+
   .desktopNav {
     a {
       padding: 10px 20px;
     }
   }
-  // home
+
+  // index/home page
   .introduction h2 {
     font-size: 3.2rem;
   }

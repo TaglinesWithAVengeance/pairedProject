@@ -1,46 +1,40 @@
 // create the namespace
-const app = {};
+const appMenu = {};
 
-// Query the hamburger menu and navigation elements
-app.hamburgerButton = document.querySelector('.mobileMenuIcon')
-app.hamburgerIcon = document.querySelector('.mobileMenuIcon i')
-app.navigationList = document.querySelector('.mobileNav')
-app.navigationListItem = document.querySelectorAll('.mobileNav li')
+// query the hamburger menu and navigation elements
+appMenu.hamburgerButton = document.querySelector('.mobileMenuIcon');
+appMenu.hamburgerIcon = document.querySelector('.mobileMenuIcon i');
+appMenu.navigationList = document.querySelector('.mobileNav');
+appMenu.navigationListItem = document.querySelectorAll('.mobileNav li');
 
-app.openHamburgerNav = () => {
-    // the menu is now open
-    app.hamburgerOpen = true;
-    // change the hamburger icon to the "x" icon
-    app.hamburgerIcon.classList.toggle('fa-xmark');
-    app.hamburgerIcon.classList.toggle('fa-bars');
-    // add the navOpen class to the nav menu list
-    app.navigationList.classList.add('navOpen');
-    // change the aria description
-    app.hamburgerIcon.ariaDescription = "Close mobile navigation menu"
+appMenu.openHamburgerNav = () => {
+	appMenu.hamburgerOpen = true;
+	// change the hamburger icon to the "x" icon
+	appMenu.hamburgerIcon.classList.toggle('fa-xmark');
+	appMenu.hamburgerIcon.classList.toggle('fa-bars');
+	// add the navOpen class to the nav menu list
+	appMenu.navigationList.classList.add('navOpen');
 }
 
-app.closeHamburgerNav = () => {
-    // The menu is now closed
-    app.hamburgerOpen = false
-    // change the hamburger icon to the "x" icon.
-    app.hamburgerIcon.classList.toggle('fa-xmark');
-    app.hamburgerIcon.classList.toggle('fa-bars');
-    // remove the navOpen class to the nav menu list
-    app.navigationList.classList.remove('navOpen');
-    // change the aria description;
-    app.hamburgerIcon.ariaDescription = "Open mobile navigation menu"
+appMenu.closeHamburgerNav = () => {
+	// change the hamburger icon to the "x" icon.
+	appMenu.hamburgerIcon.classList.toggle('fa-xmark');
+	appMenu.hamburgerIcon.classList.toggle('fa-bars');
+	// remove the navOpen class to the nav menu list
+	appMenu.navigationList.classList.remove('navOpen');
+	// the menu is now closed
+	appMenu.hamburgerOpen = false;
 }
 
-app.hamburgerClick = () => {
-    // When the hamburger button is clicked:
-    // If the menu is open, close it
-    if(app.hamburgerOpen){
-        app.closeHamburgerNav();
-        console.log(app.hamburgerIcon);
-    // If the menu is closed, open it
-    } else{
-        app.openHamburgerNav();
-        console.log(app.hamburgerIcon);
-    }
+appMenu.hamburgerClick = () => {
+	// when the hamburger button is clicked:
+	// if the menu is open, close it
+	if(appMenu.hamburgerOpen){
+		appMenu.closeHamburgerNav();
+	// if the menu is closed, open it
+	} else {
+		appMenu.openHamburgerNav();
+	}
 }
-app.hamburgerButton.addEventListener('click', app.hamburgerClick)
+
+appMenu.hamburgerButton.addEventListener('click', appMenu.hamburgerClick);
