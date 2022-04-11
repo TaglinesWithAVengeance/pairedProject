@@ -78,14 +78,19 @@ app.searchPage = 1; // start at first of 100 pages
 
 // get the latest URL configuration data from the API
 app.getConfig = async () => {
-    app.configUrl = new URL("https://api.themoviedb.org/3/configuration")
-    app.configUrl.search = new URLSearchParams({
-      api_key: app.apiKey
-    })
-    const configRes = await fetch(app.configUrl);
-    const configData = await configRes.json();
+
+  app.configUrl = new URL("https://api.themoviedb.org/3/configuration")
+  app.configUrl.search = new URLSearchParams({
+    api_key: app.apiKey
+  })
+  const configRes = await fetch(app.configUrl)
+  if(configRes.ok) {
+    const configData = await configRes.json()
     app.baseImageUrl = configData.images.secure_base_url;
     app.posterSize = configData.images.poster_sizes[3];
+  } else {
+    app.openModal("Errors...with a Vengeance", "We're having trouble collecting the movie posters right now. Please try again later.")
+  }
 }
 
 // retrieve the movie data
@@ -104,8 +109,12 @@ app.getMovies = async () => {
     with_original_language: 'en'
   })
   const movieResponse = await fetch(app.url);
-  const movieData = await movieResponse.json();
-  app.pullIDS(movieData); // now we have movies, next we pull ids for detailed info
+  if(movieResponse.ok){
+    const movieData = await movieResponse.json();
+    app.pullIDS(movieData); // now we have movies, next we pull ids for detailed info
+  }else{
+    app.openModal("Errors...with a Vengeance", "We're having trouble reaching the database. Please try again later.")
+  }
 }
 
 app.pullIDS = (movieObj) => {
@@ -128,7 +137,7 @@ app.pullIDS = (movieObj) => {
         api_key: app.apiKey
       })
       return fetch(movieUrl)
-      .then(res => res.json()); // promise per id
+      .then((res) => res.json()) // promise per id
     };
 
     Promise.all(app.promiseArray).then(eachMovie => {
