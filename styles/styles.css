@@ -240,6 +240,7 @@ body {
           justify-content: space-between;
   height: 100vh;
   max-height: 100%;
+  position: relative;
 }
 
 .wrapper {
@@ -334,7 +335,7 @@ p.gameTagline {
   text-align: center;
   font-family: ccmonstermash, sans-serif;
   font-size: 3.1rem;
-  color: #FF8811;
+  color: #D53900;
   background: white;
   text-decoration: none;
   text-transform: uppercase;
@@ -343,7 +344,7 @@ p.gameTagline {
 .buttons a:hover, .buttons a:focus,
 .submitButtons:hover,
 .submitButtons:focus {
-  border: 5px solid #FF8811;
+  border: 5px solid #D53900;
 }
 
 .score {
@@ -376,7 +377,9 @@ footer p a:hover, footer p a:focus {
   color: #0F22B4;
   text-decoration: underline;
 }
-footer .junoCollege {
+footer .junoCollege,
+footer .unsplash,
+footer .onUnsplash {
   display: block;
 }
 
@@ -408,23 +411,16 @@ header .wrapper {
   transition: 0.1s;
 }
 .mobileContainer .mobileMenuIcon:hover, .mobileContainer .mobileMenuIcon:focus {
-  color: #FF8811;
+  color: #D53900;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 .mobileContainer .mobileNav {
-  border: 3px solid #392F5A;
-  background-color: #FF8811;
   position: fixed;
-  left: -500px;
+  right: -10000px;
   top: 0;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
-}
-.mobileContainer .navOpen {
-  border-radius: 25px;
-  left: 0;
-  top: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -434,19 +430,23 @@ header .wrapper {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  z-index: 10;
-  opacity: 0.9;
-  background-color: #9DD9D2;
-  border: 8px solid #FF8811;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(157, 217, 210, 0.9);
+  border: 8px solid #D53900;
+  border-radius: 25px;
 }
-.mobileContainer .navOpen a {
+.mobileContainer .mobileNav a {
   font-size: 5rem;
+}
+.mobileContainer .navOpen {
+  right: 0;
+  top: 0;
+  z-index: 10;
 }
 
 footer {
@@ -568,7 +568,7 @@ main {
 .about .textContainer p a:hover, .about .textContainer p a:focus {
   color: #0F22B4;
 }
-.about .textContainer .logoContainer {
+.about .logoContainer {
   margin: 25px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -576,9 +576,14 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 100%;
+  height: 100%;
 }
-.about .textContainer .logoContainer img {
-  width: 30%;
+.about .logoContainer img {
+  width: 25%;
+  height: 50%;
 }
 
 .posterDisplay {
@@ -619,7 +624,7 @@ main {
           justify-content: center;
 }
 .posterDisplay .posterReveal p {
-  color: #FF8811;
+  color: #9DD9D2;
   font-family: ccmonstermash, sans-serif;
   text-align: center;
   font-size: 10rem;
@@ -645,6 +650,101 @@ main {
   background-color: green;
   -webkit-transform: scale(1.4);
           transform: scale(1.4);
+}
+
+.modalClosed {
+  visibility: none;
+  position: absolute;
+  left: -5000px;
+  top: 0;
+  -webkit-transition: unset;
+  transition: unset;
+}
+
+.modalOpen {
+  visibility: visible;
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: 100vh;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(57, 47, 90, 0.9);
+  width: 100vw;
+  height: 100vh;
+  z-index: 40;
+}
+.modal .closeModal {
+  position: fixed;
+  cursor: pointer;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.modal .modalMessageBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  width: 90%;
+  height: 50%;
+  background: #9DD9D2;
+  border-radius: 25px;
+  border: 8px solid #D53900;
+  opacity: 1;
+  z-index: 60;
+}
+.modal .modalMessageBox h2 {
+  color: #392F5A;
+  font-size: 2.5rem;
+  margin: 25px 0;
+}
+.modal .modalMessageBox .modalText {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #392F5A;
+  padding: 0 25px;
+}
+.modal .modalMessageBox i {
+  font-size: 3rem;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #392F5A;
+  z-index: 70;
+  padding: 25px;
+  cursor: pointer;
+}
+.modal .modalMessageBox i:hover, .modal .modalMessageBox i:focus {
+  color: #D53900;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .grayedOut {
@@ -700,7 +800,7 @@ main {
   display: none;
 }
 .gamePlay ul li input[type=radio]:checked + * {
-  color: #FF8811;
+  color: #D53900;
 }
 .gamePlay ul li input[type=radio] + *::before {
   content: "";
@@ -715,8 +815,8 @@ main {
   border-color: #392F5A;
 }
 .gamePlay ul li input[type=radio]:checked + *::before {
-  background: radial-gradient(#FF8811 0%, #FF8811 40%, white 50%, white);
-  border-color: #FF8811;
+  background: radial-gradient(#D53900 0%, #D53900 40%, white 50%, white);
+  border-color: #D53900;
 }
 
 @media (min-width: 480px) {
@@ -739,11 +839,15 @@ main {
     font-size: 3.7rem;
   }
 
-  label #text {
-    padding-left: 10px;
+  .modal .modalMessageBox .modalText {
+    font-size: 2rem;
+  }
+  .modal .modalMessageBox h2 {
+    font-size: 3.5rem;
   }
 
-  footer .junoCollege {
+  footer .junoCollege,
+footer .onUnsplash {
     display: inline;
   }
 }
@@ -789,11 +893,23 @@ main {
         justify-content: space-around;
   }
 
+  .modal .modalMessageBox .modalText {
+    font-size: 2.4rem;
+  }
+  .modal .modalMessageBox h2 {
+    font-size: 4.5rem;
+  }
+
   .about .imgContainer {
     width: 55%;
   }
   .about .textContainer h2 {
     font-size: 3rem;
+  }
+  .about .logoContainer {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
 
   .mobileContainer {
@@ -822,6 +938,10 @@ main {
 
   .introduction h2 {
     font-size: 3.2rem;
+  }
+
+  footer .unsplash {
+    display: inline;
   }
 
   .gamePlay {
@@ -866,5 +986,12 @@ main {
   }
   .gamePlay .textContainer {
     width: 65%;
+  }
+
+  .modal .modalMessageBox {
+    width: 80%;
+  }
+  .modal .modalMessageBox h2 {
+    font-size: 6.5rem;
   }
 }

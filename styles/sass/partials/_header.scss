@@ -27,30 +27,26 @@ header {
     }
   }
   .mobileNav {
-    border: 3px solid $purple;
-    background-color: $orange;
     position: fixed;
-    left: -500px;
+    right: -10000px;
     top: 0;
-    transition: 0.1s;
-  }
-  .navOpen {
-    border-radius: 25px;
-    left: 0;
-    top: 0;
+    transition: 0.3s;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
-    z-index: 10;
-    opacity: 0.9;
-    background-color: $seafoam;
+    align-items: center;
+    background-color: rgba(157, 217, 210, 0.9);
     border: 8px solid $orange;
-
+    border-radius: 25px;
     a {
       font-size: 5rem;
     }
+  }
+  .navOpen {
+    right: 0;
+    top: 0;
+    z-index: 10;
   }
 }

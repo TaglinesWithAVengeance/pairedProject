@@ -31,6 +31,43 @@ app.hamburgerButton = document.querySelector('.mobileMenuIcon')
 app.hamburgerIcon = document.querySelector('.mobileMenuIcon i')
 app.navigationList = document.querySelector('.mobileNav')
 app.navigationListItem = document.querySelectorAll('.mobileNav li')
+
+// query the announcement div for AT accessible responses after the user hits submit
+app.ariaAnswerAnnouncement = document.querySelector('#answerAnnounce')
+
+
+// query the modal elements
+app.modal = document.querySelector('#modal')
+app.modalButton = document.querySelector('.closeModal')
+app.modalX = document.querySelector("#modalX")
+app.modalHeading = document.querySelector(".modalHeading")
+app.modalText = document.querySelector(".modalText");
+// Start with modals closed;
+app.modalOpen = false;
+
+// receive the heading and texts as parameters for the function
+app.openModal = (heading, message) => {
+  // The modal is now open
+  app.modalOpen = true;
+  // toggle the classes that open the modal
+  app.modal.classList.toggle("modalClosed");
+  app.modal.classList.toggle("modalOpen");
+  // Change the text of the heading and the message
+  app.modalHeading.innerText = heading;
+  app.modalText.innerText = message;
+}
+// Close the modal
+app.closeModal = () => {
+  // The modal is now open
+  app.modalOpen = false;
+  // Toggle the classes that close the modal
+  app.modal.classList.toggle("modalClosed");
+  app.modal.classList.toggle("modalOpen");
+  // Remove the current heading and message from the modal.
+  app.modalHeading.innerText = ""
+  app.modalText.innerText = ""
+}
+
 // Storing API key
 app.apiKey = '81816879fd2d3541c56bc904bce4b7e3';
 app.searchPage = 1; // Starts with the first page of the most popular movies.
@@ -185,6 +222,7 @@ app.submitButtonEl.addEventListener('click', (event) => {
   app.checkIconEl = document.querySelector('.fa-circle-check')
   app.xIconEl = document.querySelector('.fa-circle-xmark')
   app.posterContainer = document.querySelector('.posterReveal')
+  
   // On submit, display the poster, add to userScore and questionNumber total, and highlight check or x icons.
   
   if(!app.questionSubmitted){
@@ -197,14 +235,27 @@ app.submitButtonEl.addEventListener('click', (event) => {
     }
 
   const correctMovieOutput = findCorrectMovie();
-
+  
+  // check if an movie option was selected before hitting submit
+  app.optionWasSelected = false;
+  for(let i = 0; i < app.radioButtons.length; i++){
+    if(app.radioButtons[i].checked){
+      app.optionWasSelected = true;
+    }
+  }
+  // If no option was selected, send an error with the modal function.
+  if (!app.optionWasSelected){
+    let heading = "Try your best guess!"
+    let message = "Please select a movie option before submitting."
+    return app.openModal(heading, message);
+  }
     // Prevent the user from selecting another option for this question.
     for(i = 0; i < 4; i++){
         app.radioButtons[i].disabled = true;
       }
     // Change app.questionSubmitted to true
     app.questionSubmitted = true;
-    // Grey out the submit button
+    // Gray out the submit button
     app.submitButtonEl.classList.toggle('grayedOut');
     app.nextButtonEl.classList.toggle('grayedOut');
     app.getPoster(correctMovieOutput.posterPath);
@@ -212,18 +263,23 @@ app.submitButtonEl.addEventListener('click', (event) => {
       // If the user chooses the correct option. Up the user's score by 1.
       app.userScore++;
       app.scoreCorrectEl.innerText = app.userScore;
+      // update the accessible announcement section that the user was correct.
+      app.ariaAnswerAnnouncement.innerHTML = `<p>Correct!</p>`
 
       //update the question number and score "out of" number
       app.scoreQuestionNumberEl.innerText = app.questionNumber;
       
-      // Change the background of the check mark icon to green, Increase the checkmark's container size and grey out the x.
+      // Change the background of the check mark icon to green, Increase the checkmark's container size and gray out the x.
       app.checkIconEl.classList.toggle('correct');
       app.xIconEl.classList.toggle('grayedOut');
     } else {
       // If the user chooses the incorrect option: change the x icon color to red.
+      // update the accessible announcement section that the user was correct.
+      app.ariaAnswerAnnouncement.innerHTML = `<p>Sorry, incorrect... This tagline was for ${correctMovieOutput.name}</p>`
+
       app.xIconEl.classList.toggle('incorrect');
       app.checkIconEl.classList.toggle('grayedOut');
-      // Change the background of the x icon to red, Increase the x mark's container size and grey out the checkmark.
+      // Change the background of the x icon to red, Increase the x mark's container size and gray out the checkmark.
     }
   }
 })
@@ -264,13 +320,24 @@ app.hamburgerClick = () => {
     app.openHamburgerNav();
   }
 }
+// event listener for the mobile menu hamburger button
 app.hamburgerButton.addEventListener('click', app.hamburgerClick)
 
+// event listener for the button that closes the modal
+app.modalButton.addEventListener('click', app.closeModal)
+// event listener for the x icon that closes the modal
+app.modalX.addEventListener('click', app.closeModal)
+
+// Retrieve the poster for the film that matches the tagline
 app.getPoster = (posterPath, movieTitle) => {
+  // use the info from the configuration API call and the movies API call to get the image URL.
   let posterUrl = `${app.baseImageUrl}/${app.posterSize}/${posterPath}`;
+  // create a poster image element
   app.posterImage = document.createElement('img');
+  // set the src and alt text for the newly created img element
   app.posterImage.src = posterUrl;
   app.posterImage.alt = `Movie poster for ${movieTitle}`;
+  // clear out the "?"" from the posterContainer and add the poster image itself.
   app.posterContainer.innerHTML = "";
   app.posterContainer.appendChild(app.posterImage);
 }
@@ -291,6 +358,7 @@ app.refreshGameplayPage = () => {
   app.checkIconEl.classList.remove('correct');
   app.xIconEl.classList.remove('grayedOut');
   app.xIconEl.classList.remove('incorrect');
+  app.ariaAnswerAnnouncement.innerHTML = ""
   for(i = 0; i < 4; i++){
     app.radioButtons[i].disabled = false;  
     app.radioButtons[i].checked = false;
