@@ -820,8 +820,7 @@ main {
 }
 
 @media (min-width: 400px) {
-  .gamePlay h2,
-.gamePlay .whatMovie {
+  h2 {
     font-size: 2.2rem;
   }
 }
